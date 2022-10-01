@@ -10,6 +10,8 @@ CONFIG += c++17
 
 SOURCES += \
     main.cpp \
+    model/src/adress.cpp \
+    model/src/patientlistmodel.cpp \
     view/src/addpatientwidget.cpp \
     view/src/changepatientwidget.cpp \
     view/src/deletedialog.cpp \
@@ -17,6 +19,8 @@ SOURCES += \
     view/src/showpatientwidget.cpp
 
 HEADERS += \
+    model/header/adress.h \
+    model/header/patientlistmodel.h \
     view/header/addpatientwidget.h \
     view/header/changepatientwidget.h \
     view/header/deletedialog.h \
