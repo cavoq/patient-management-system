@@ -9,13 +9,19 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    addpatient.cpp \
+    deldialog.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
+    addpatient.h \
+    deldialog.h \
     mainwindow.h
 
 FORMS += \
+    addpatient.ui \
+    deldialog.ui \
     mainwindow.ui
 
 # Default rules for deployment.
