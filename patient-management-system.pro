@@ -21,6 +21,7 @@ SOURCES += \
 
 HEADERS += \
     model/header/adress.h \
+    model/header/gender.h \
     model/header/name.h \
     model/header/patientlistmodel.h \
     model/header/patient.h \

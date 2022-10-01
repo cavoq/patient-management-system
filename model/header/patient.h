@@ -2,9 +2,8 @@
 #define PATIENT_H
 
 #include "model/header/name.h"
+#include "model/header/gender.h"
 #include "model/header/adress.h"
-
-enum Gender {male, female, divers};
 
 class Patient
 {
