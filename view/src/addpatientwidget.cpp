@@ -1,4 +1,4 @@
-#include "addpatientwidget.h"
+#include "view/header/addpatientwidget.h"
 #include "ui_addpatientwidget.h"
 
 AddPatientWidget::AddPatientWidget(QWidget *parent) :

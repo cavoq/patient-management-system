@@ -1,4 +1,4 @@
-#include "changepatientwidget.h"
+#include "view/header/changepatientwidget.h"
 #include "ui_changepatientwidget.h"
 
 ChangePatientWidget::ChangePatientWidget(QWidget *parent) :

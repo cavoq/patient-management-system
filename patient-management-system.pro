@@ -9,26 +9,26 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    addpatientwidget.cpp \
-    changepatientwidget.cpp \
-    deletedialog.cpp \
     main.cpp \
-    mainwindow.cpp \
-    showpatientwidget.cpp
+    view/src/addpatientwidget.cpp \
+    view/src/changepatientwidget.cpp \
+    view/src/deletedialog.cpp \
+    view/src/mainwindow.cpp \
+    view/src/showpatientwidget.cpp
 
 HEADERS += \
-    addpatientwidget.h \
-    changepatientwidget.h \
-    deletedialog.h \
-    mainwindow.h \
-    showpatientwidget.h
+    view/header/addpatientwidget.h \
+    view/header/changepatientwidget.h \
+    view/header/deletedialog.h \
+    view/header/mainwindow.h \
+    view/header/showpatientwidget.h
 
 FORMS += \
-    addpatientwidget.ui \
-    changepatientwidget.ui \
-    deletedialog.ui \
-    mainwindow.ui \
-    showpatientwidget.ui
+    view/ui/addpatientwidget.ui \
+    view/ui/changepatientwidget.ui \
+    view/ui/deletedialog.ui \
+    view/ui/mainwindow.ui \
+    view/ui/showpatientwidget.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

@@ -1,4 +1,4 @@
-#include "deletedialog.h"
+#include "view/header/deletedialog.h"
 #include "ui_deletedialog.h"
 
 DeleteDialog::DeleteDialog(QWidget *parent) :
