@@ -7,3 +7,7 @@ Adress::Adress(std::string street, int house_number, int plz, std::string locati
     this->plz = plz;
     this->location = location;
 }
+
+Adress::Adress()
+{
+}

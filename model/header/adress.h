@@ -6,6 +6,7 @@
 class Adress
 {
 public:
+    Adress();
     Adress(std::string street, int house_number, int plz, std::string location);
     std::string street;
     int house_number;
