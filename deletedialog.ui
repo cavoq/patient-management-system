@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>delDialog</class>
- <widget class="QWidget" name="delDialog">
+ <class>DeleteDialog</class>
+ <widget class="QWidget" name="DeleteDialog">
   <property name="geometry">
    <rect>
     <x>0</x>

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>addPatient</class>
- <widget class="QWidget" name="addPatient">
+ <class>ChangePatientWidget</class>
+ <widget class="QWidget" name="ChangePatientWidget">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>341</width>
-    <height>360</height>
+    <width>342</width>
+    <height>361</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,7 +17,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>0</y>
+     <y>10</y>
      <width>321</width>
      <height>291</height>
     </rect>
@@ -136,7 +136,7 @@
    <property name="geometry">
     <rect>
      <x>180</x>
-     <y>310</y>
+     <y>320</y>
      <width>151</width>
      <height>31</height>
     </rect>
@@ -149,7 +149,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>310</y>
+     <y>320</y>
      <width>151</width>
      <height>31</height>
     </rect>
