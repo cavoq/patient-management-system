@@ -1,0 +1,50 @@
+{
+    "0": {
+        "address": {
+            "house number": 14,
+            "location": "Stuttgart",
+            "plz": 70173,
+            "street": "Hauptstrasse"
+        },
+        "birth date": "14.12.2000",
+        "gender": "Mann",
+        "name": {
+            "first name": "Leo",
+            "last name": "Emmert"
+        },
+        "phone number": "198021801",
+        "titel": ""
+    },
+    "1": {
+        "address": {
+            "house number": 15,
+            "location": "Koblenz",
+            "plz": 56220,
+            "street": "Rheinstrasse"
+        },
+        "birth date": "14.12.1998",
+        "gender": "Frau",
+        "name": {
+            "first name": "Marie",
+            "last name": "Married"
+        },
+        "phone number": "198021801",
+        "titel": "Doktor med"
+    },
+    "2": {
+        "address": {
+            "house number": 13,
+            "location": "Mainz",
+            "plz": 56223,
+            "street": "Feldstrasse"
+        },
+        "birth date": "14.12.1997",
+        "gender": "Divers",
+        "name": {
+            "first name": "John",
+            "last name": "Carmack"
+        },
+        "phone number": "198021801",
+        "titel": ""
+    }
+}

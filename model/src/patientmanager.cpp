@@ -21,17 +21,17 @@ void PatientManager::save_to_json(QString json_file)
         QJsonObject q_patient;
         QJsonObject q_adress;
         QJsonObject q_name;
-        q_name.insert("first name", patient.name.first_name.c_str());
-        q_name.insert("last name", patient.name.last_name.c_str());
-        q_adress.insert("street", patient.address.street.c_str());
+        q_name.insert("first name", patient.name.first_name);
+        q_name.insert("last name", patient.name.last_name);
+        q_adress.insert("street", patient.address.street);
         q_adress.insert("house number", patient.address.house_number);
         q_adress.insert("plz", patient.address.plz);
-        q_adress.insert("location", patient.address.location.c_str());
-        q_patient.insert("titel", patient.titel.c_str());
+        q_adress.insert("location", patient.address.location);
+        q_patient.insert("titel", patient.titel);
         q_patient.insert("name", q_name);
         q_patient.insert("address", q_adress);
-        q_patient.insert("phone number", patient.phone_number.c_str());
-        q_patient.insert("birth date", patient.birth_date.c_str());
+        q_patient.insert("phone number", patient.phone_number);
+        q_patient.insert("birth date", patient.birth_date);
         q_patient.insert("gender", patient.gender);
         content.insert(QString::fromStdString(patient_index_as_string), q_patient);
         patient_index += 1;
@@ -75,10 +75,10 @@ void PatientManager::load_from_json(QString json_file)
                     Name name;
                     if(patient_index.isObject())
                     {
-                        std::string titel = patient_index.toObject().value("titel").toString().toStdString();
-                        std::string birth_date = patient_index.toObject().value("birth date").toString().toStdString();
-                        Gender gender = (Gender) patient_index.toObject().value("gender").toInt();
-                        std::string phone_number = patient_index.toObject().value("phone number").toString().toStdString();
+                        QString titel = patient_index.toObject().value("titel").toString();
+                        QString birth_date = patient_index.toObject().value("birth date").toString();
+                        QString gender = patient_index.toObject().value("gender").toString();
+                        QString phone_number = patient_index.toObject().value("phone number").toString();
                         QJsonValue address_val = patient_index.toObject().value("address");
                         if (address_val.isObject())
                         {
@@ -101,16 +101,16 @@ void PatientManager::load_from_json(QString json_file)
 
 Address PatientManager::create_address(QJsonObject& json_address)
 {
-    std::string street = json_address.value("street").toString().toStdString();
+    QString street = json_address.value("street").toString();
     int house_number = json_address.value("house number").toInt();
     int plz = json_address.value("plz").toInt();
-    std::string location = json_address.value("location").toString().toStdString();
+    QString location = json_address.value("location").toString();
     return Address(street, house_number, plz, location);
 }
 
 Name PatientManager::create_name(QJsonObject& json_name)
 {
-    std::string first_name = json_name.value("first name").toString().toStdString();
-    std::string last_name = json_name.value("last name").toString().toStdString();
+    QString first_name = json_name.value("first name").toString();
+    QString last_name = json_name.value("last name").toString();
     return Name(first_name, last_name);
 }

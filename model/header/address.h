@@ -1,17 +1,17 @@
 #ifndef ADDRESS_H
 #define ADDRESS_H
 
-#include <string>
+#include <QString>
 
 class Address
 {
 public:
     Address();
-    Address(std::string street, int house_number, int plz, std::string location);
-    std::string street;
+    Address(QString street, int house_number, int plz, QString location);
+    QString street;
     int house_number;
     int plz;
-    std::string location;
+    QString location;
 };
 
 #endif // ADDRESS_H

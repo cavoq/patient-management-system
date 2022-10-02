@@ -2,19 +2,18 @@
 #define PATIENT_H
 
 #include "model/header/name.h"
-#include "model/header/gender.h"
 #include "model/header/address.h"
 
 class Patient
 {
 public:
-    Patient(Address& adress, std::string titel, Name& name, std::string birth_date, std::string phone_number, Gender gender);
+    Patient(Address& adress, QString titel, Name& name, QString birth_date, QString phone_number, QString gender);
     Address address;
-    std::string titel;
+    QString titel;
     Name name;
-    std::string birth_date;
-    std::string phone_number;
-    Gender gender;
+    QString birth_date;
+    QString phone_number;
+    QString gender;
 };
 
 #endif // PATIENT_H

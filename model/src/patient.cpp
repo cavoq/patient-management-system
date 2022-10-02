@@ -1,6 +1,6 @@
 #include "model/header/patient.h"
 
-Patient::Patient(Address& address, std::string titel, Name& name, std::string birth_date, std::string phone_number, Gender gender)
+Patient::Patient(Address& address, QString titel, Name& name, QString birth_date, QString phone_number, QString gender)
 {
     this->address = address;
     this->titel = titel;

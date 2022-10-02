@@ -3,7 +3,6 @@
 #include <QApplication>
 #include <iostream>
 #include <QtCore>
-#include "model/header/patientmanager.h"
 
 int main(int argc, char *argv[])
 {
