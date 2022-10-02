@@ -1,3 +1,7 @@
+/**
+ * Module that defines genders.
+ */
+
 #ifndef GENDER_H
 #define GENDER_H
 

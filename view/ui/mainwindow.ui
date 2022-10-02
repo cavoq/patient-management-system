@@ -130,7 +130,7 @@
      <string>Auswahl aufheben</string>
     </property>
    </widget>
-   <widget class="QListView" name="listView">
+   <widget class="QTableView" name="tableView">
     <property name="geometry">
      <rect>
       <x>50</x>

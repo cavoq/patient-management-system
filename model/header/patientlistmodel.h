@@ -1,4 +1,4 @@
-#ifndef PATIENTLISTMODEL_H
+ifndef PATIENTLISTMODEL_H
 #define PATIENTLISTMODEL_H
 
 #include <QAbstractListModel>

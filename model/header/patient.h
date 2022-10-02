@@ -3,13 +3,13 @@
 
 #include "model/header/name.h"
 #include "model/header/gender.h"
-#include "model/header/adress.h"
+#include "model/header/address.h"
 
 class Patient
 {
 public:
-    Patient(Adress& adress, std::string titel, Name& name, std::string birth_date, std::string phone_number, Gender gender);
-    Adress adress;
+    Patient(Address& adress, std::string titel, Name& name, std::string birth_date, std::string phone_number, Gender gender);
+    Address address;
     std::string titel;
     Name name;
     std::string birth_date;
