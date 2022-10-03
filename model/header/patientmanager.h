@@ -13,7 +13,7 @@
 class PatientManager
 {
 private:
-    std::vector<Patient> patients;
+    QList<Patient> patients;
     Address create_address(QJsonObject& json_address);
     Name create_name(QJsonObject& json_name);
 
@@ -22,7 +22,6 @@ public:
     std::vector<Patient>& getPatients();
     void save_to_json(QString json_file);
     void load_from_json(QString json_file);
-    void export_to_json();
 };
 
 #endif // PATIENTMANAGER_H

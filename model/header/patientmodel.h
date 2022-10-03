@@ -10,10 +10,11 @@ class PatientModel : public QAbstractTableModel
     Q_OBJECT
 
 private:
-    std::vector<Patient> patients;
+    QList<Patient> patients;
+    const unsigned int column_count = 4;
 
 public:
-    explicit PatientModel(QObject *parent = nullptr);
+    explicit PatientModel(const QList<Patient>& patients, QObject *parent = nullptr);
 
     // Header:
     QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const override;

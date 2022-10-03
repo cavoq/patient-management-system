@@ -15,8 +15,7 @@ void PatientManager::save_to_json(QString json_file)
     QJsonObject content;
     QJsonDocument document;
     int patient_index = 0;
-    for(Patient& patient: this->patients)
-    {
+    for (Patient& patient: this->patients) {
         std::string patient_index_as_string = std::to_string(patient_index);
         QJsonObject q_patient;
         QJsonObject q_adress;
@@ -39,13 +38,11 @@ void PatientManager::save_to_json(QString json_file)
     document.setObject(content);
     QByteArray bytes = document.toJson(QJsonDocument::Indented);
     QFile file(json_file);
-    if(file.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Truncate))
-    {
+    if (file.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Truncate)) {
         file.write(bytes);
         file.close();
      }
-     else
-     {
+     else {
         std::cout << "file open failed: " << json_file.toStdString() << std::endl;
      }
 }
@@ -54,40 +51,33 @@ void PatientManager::load_from_json(QString json_file)
 {
     this->patients.clear();
     QFile file(json_file);
-    if(file.open(QIODevice::ReadOnly))
-    {
+    if (file.open(QIODevice::ReadOnly)) {
         QByteArray bytes = file.readAll();
         file.close();
 
         QJsonParseError jsonError;
         QJsonDocument document = QJsonDocument::fromJson(bytes, &jsonError);
-            if(jsonError.error != QJsonParseError::NoError)
-            {
+            if (jsonError.error != QJsonParseError::NoError) {
                 std::cout << "fromJson failed: " << jsonError.errorString().toStdString() << std::endl;
                 return ;
             }
-            if(document.isObject())
-            {
+            if (document.isObject()) {
                 QJsonObject json = document.object();
-                for(auto patient_index: json)
-                {
+                for (auto patient_index: json) {
                     Address address;
                     Name name;
-                    if(patient_index.isObject())
-                    {
+                    if (patient_index.isObject()) {
                         QString titel = patient_index.toObject().value("titel").toString();
                         QString birth_date = patient_index.toObject().value("birth date").toString();
                         QString gender = patient_index.toObject().value("gender").toString();
                         QString phone_number = patient_index.toObject().value("phone number").toString();
                         QJsonValue address_val = patient_index.toObject().value("address");
-                        if (address_val.isObject())
-                        {
+                        if (address_val.isObject()) {
                             QJsonObject json_address = address_val.toObject();
                             address = this->create_address(json_address);
                         }
                         QJsonValue name_val = patient_index.toObject().value("name");
-                        if (name_val.isObject())
-                        {
+                        if (name_val.isObject()) {
                             QJsonObject json_name = name_val.toObject();
                             name = this->create_name(json_name);
                         }
