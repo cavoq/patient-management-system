@@ -19,7 +19,7 @@ private:
 
 public:
     PatientManager();
-    std::vector<Patient>& getPatients();
+    QList<Patient>& getPatients();
     void save_to_json(QString json_file);
     void load_from_json(QString json_file);
 };

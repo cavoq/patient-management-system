@@ -5,7 +5,7 @@
 
 PatientManager::PatientManager() {}
 
-std::vector<Patient>& PatientManager::getPatients()
+QList<Patient>& PatientManager::getPatients()
 {
     return this->patients;
 }
