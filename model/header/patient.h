@@ -7,6 +7,8 @@
 class Patient
 {
 public:
+    Patient();
+    ~Patient();
     Patient(Address& adress, QString titel, Name& name, QString birth_date, QString phone_number, QString gender);
     Address address;
     QString titel;

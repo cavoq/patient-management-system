@@ -9,3 +9,5 @@ Patient::Patient(Address& address, QString titel, Name& name, QString birth_date
     this->phone_number = phone_number;
     this->gender = gender;
 }
+
+Patient::Patient() {}

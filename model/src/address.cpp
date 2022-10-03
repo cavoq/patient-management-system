@@ -8,6 +8,4 @@ Address::Address(QString street, int house_number, int plz, QString location)
     this->location = location;
 }
 
-Address::Address()
-{
-}
+Address::Address() {}

@@ -1,11 +1,11 @@
-#ifndef PATIENTMODEL_H
-#define PATIENTMODEL_H
+#ifndef PATIENTTABLEMODEL_H
+#define PATIENTTABLEMODEL_H
 
 #include <QAbstractTableModel>
 
 #include "model/header/patient.h"
 
-class PatientModel : public QAbstractTableModel
+class PatientTableModel : public QAbstractTableModel
 {
     Q_OBJECT
 
@@ -14,7 +14,7 @@ private:
     const unsigned int column_count = 4;
 
 public:
-    explicit PatientModel(const QList<Patient>& patients, QObject *parent = nullptr);
+    explicit PatientTableModel(const QList<Patient>& patients, QObject *parent = nullptr);
 
     // Header:
     QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const override;
@@ -22,10 +22,14 @@ public:
     // Basic functionality:
     int rowCount(const QModelIndex &parent = QModelIndex()) const override;
     int columnCount(const QModelIndex &parent = QModelIndex()) const override;
+    bool removeRows(int position, int rows, const QModelIndex &index = QModelIndex()) override;
+    bool insertRows(int position, int rows, const QModelIndex &index = QModelIndex()) override;
+    bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole) override;
+    const QList<Patient>& getPatients() const;
 
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
 
 private:
 };
 
-#endif // PATIENTMODEL_H
+#endif // PATIENTTABLEMODEL_H

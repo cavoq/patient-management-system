@@ -12,8 +12,8 @@ SOURCES += \
     main.cpp \
     model/src/address.cpp \
     model/src/patientmanager.cpp \
-    model/src/patientmodel.cpp \
     model/src/patient.cpp \
+    model/src/patienttablemodel.cpp \
     view/src/addpatientwidget.cpp \
     view/src/changepatientwidget.cpp \
     view/src/deletedialog.cpp \
@@ -25,7 +25,7 @@ HEADERS += \
     model/header/name.h \
     model/header/patient.h \
     model/header/patientmanager.h \
-    model/header/patientmodel.h \
+    model/header/patienttablemodel.h \
     view/header/addpatientwidget.h \
     view/header/changepatientwidget.h \
     view/header/deletedialog.h \
