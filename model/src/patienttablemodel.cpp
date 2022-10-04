@@ -55,7 +55,7 @@ QVariant PatientTableModel::data(const QModelIndex &index, int role) const
             case 2:
                 return patient.name.last_name;
             case 3:
-                return patient.birth_date;
+                return patient.birth_date.toString("dd.MM.yyyy");
             default:
                 break;
         }
@@ -95,15 +95,20 @@ bool PatientTableModel::setData(const QModelIndex &index, const QVariant &value,
 
         switch (index.column()) {
             case 0:
-                contact.name = value.toString();
+                patient.titel = value.toString();
                 break;
             case 1:
-                contact.address = value.toString();
+                patient.name.first_name = value.toString();
                 break;
+            case 2:
+                patient.name.last_name = value.toString();
+                break;
+            case 3:
+                patient.birth_date = value.toDate();
             default:
                 return false;
         }
-        contacts.replace(row, contact);
+        this->patients.replace(row, patient);
         emit dataChanged(index, index, {Qt::DisplayRole, Qt::EditRole});
 
         return true;

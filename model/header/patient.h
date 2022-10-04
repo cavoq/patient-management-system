@@ -3,17 +3,17 @@
 
 #include "model/header/name.h"
 #include "model/header/address.h"
+#include "qdatetime.h"
 
 class Patient
 {
 public:
     Patient();
-    ~Patient();
-    Patient(Address& adress, QString titel, Name& name, QString birth_date, QString phone_number, QString gender);
+    Patient(Address& adress, QString titel, Name& name, QDate birth_date, QString phone_number, QString gender);
     Address address;
     QString titel;
     Name name;
-    QString birth_date;
+    QDate birth_date;
     QString phone_number;
     QString gender;
 };
