@@ -2,21 +2,19 @@
 #define ADDPATIENTWIDGET_H
 
 #include <QWidget>
+#include "view/header/patientformwidget.h"
 
 namespace Ui {
 class AddPatientWidget;
 }
 
-class AddPatientWidget : public QWidget
+class AddPatientWidget : public PatientFormWidget
 {
     Q_OBJECT
 
 public:
     explicit AddPatientWidget(QWidget *parent = nullptr);
     ~AddPatientWidget();
-
-private:
-    Ui::AddPatientWidget *ui;
 };
 
 #endif // ADDPATIENTWIDGET_H

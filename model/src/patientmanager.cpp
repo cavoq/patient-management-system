@@ -92,7 +92,7 @@ void PatientManager::load_from_json(QString json_file)
 Address PatientManager::create_address(QJsonObject& json_address)
 {
     QString street = json_address.value("street").toString();
-    int house_number = json_address.value("house number").toInt();
+    QString house_number = json_address.value("house number").toString();
     int plz = json_address.value("plz").toInt();
     QString location = json_address.value("location").toString();
     return Address(street, house_number, plz, location);

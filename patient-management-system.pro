@@ -18,7 +18,8 @@ SOURCES += \
     view/src/changepatientwidget.cpp \
     view/src/deletedialog.cpp \
     view/src/mainwindow.cpp \
-    view/src/showpatientwidget.cpp
+    view/src/showpatientwidget.cpp \
+    view/src/patientformwidget.cpp
 
 HEADERS += \
     model/header/address.h \
@@ -30,13 +31,13 @@ HEADERS += \
     view/header/changepatientwidget.h \
     view/header/deletedialog.h \
     view/header/mainwindow.h \
-    view/header/showpatientwidget.h
+    view/header/showpatientwidget.h \
+    view/header/patientformwidget.h
 
 FORMS += \
-    view/ui/addpatientwidget.ui \
-    view/ui/changepatientwidget.ui \
     view/ui/deletedialog.ui \
     view/ui/mainwindow.ui \
+    view/ui/patientformwidget.ui \
     view/ui/showpatientwidget.ui
 
 # Default rules for deployment.

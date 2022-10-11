@@ -1,11 +1,9 @@
 #include "view/header/addpatientwidget.h"
-#include "ui_addpatientwidget.h"
+#include "ui_patientformwidget.h"
 
-AddPatientWidget::AddPatientWidget(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::AddPatientWidget)
+AddPatientWidget::AddPatientWidget(QWidget *parent) : PatientFormWidget(parent)
 {
-    ui->setupUi(this);
+    this->setWindowTitle("Patient hinzufügen");
 }
 
 AddPatientWidget::~AddPatientWidget()

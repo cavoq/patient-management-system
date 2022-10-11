@@ -2,21 +2,21 @@
 #define CHANGEPATIENTWIDGET_H
 
 #include <QWidget>
+#include "model/header/patienttablemodel.h"
+#include "view/header/patientformwidget.h"
 
 namespace Ui {
 class ChangePatientWidget;
 }
 
-class ChangePatientWidget : public QWidget
+class ChangePatientWidget : public PatientFormWidget
 {
     Q_OBJECT
 
 public:
     explicit ChangePatientWidget(QWidget *parent = nullptr);
+    void setFormData(PatientTableModel& patientTableModel,  QModelIndexList& patientIndexes);
     ~ChangePatientWidget();
-
-private:
-    Ui::ChangePatientWidget *ui;
 };
 
 #endif // CHANGEPATIENTWIDGET_H

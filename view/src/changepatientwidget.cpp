@@ -1,14 +1,17 @@
 #include "view/header/changepatientwidget.h"
-#include "ui_changepatientwidget.h"
+#include "model/header/patienttablemodel.h"
+#include "ui_patientformwidget.h"
 
-ChangePatientWidget::ChangePatientWidget(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::ChangePatientWidget)
+ChangePatientWidget::ChangePatientWidget(QWidget *parent) : PatientFormWidget(parent)
 {
-    ui->setupUi(this);
+    this->setWindowTitle("Patientendaten ändern");
 }
 
 ChangePatientWidget::~ChangePatientWidget()
 {
     delete ui;
+}
+
+void ChangePatientWidget::setFormData(PatientTableModel& patientTableModel, QModelIndexList& patientIndexes)
+{
 }

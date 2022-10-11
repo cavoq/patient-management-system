@@ -2,12 +2,19 @@
 #include "model/header/patientmanager.h"
 #include "model/header/patienttablemodel.h"
 #include "ui_mainwindow.h"
+#include "view/header/addpatientwidget.h"
+#include "view/header/changepatientwidget.h"
+#include <QMessageBox>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    this->patientManager->load_from_json("patients.json");
+    this->patientTableModel = new PatientTableModel(this->patientManager->getPatients(), this);
+    ui->tableView->setModel(this->patientTableModel);
+    this->connectSignals();
 }
 
 MainWindow::~MainWindow()
@@ -15,11 +22,29 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::initialize()
+void MainWindow::connectSignals()
 {
-    PatientManager* patient_manager = new PatientManager();
-    patient_manager->load_from_json("patients.json");
-    QList<Patient> patients = patient_manager->getPatients();
-    PatientTableModel* patient_table_model = new PatientTableModel(patients, this);
-    ui->tableView->setModel(patient_table_model);
+    connect(ui->addPatientsButton, SIGNAL(clicked()), this, SLOT(openAddPatientWidget()));
+    connect(ui->changePatientsButto, SIGNAL(clicked()), this, SLOT(openChangePatientWidget()));
+}
+
+void MainWindow::openAddPatientWidget()
+{
+    AddPatientWidget* add_patient_widget = new AddPatientWidget();
+    add_patient_widget->show();
+}
+
+void MainWindow::openChangePatientWidget()
+{
+    const QModelIndex selection = ui->tableView->selectionModel()->currentIndex();
+    if (!selection.isValid()) {
+        QMessageBox warning;
+        warning.setWindowTitle("Warnung");
+        warning.setText("Es wurde kein Patient zum bearbeiten ausgewählt");
+        warning.exec();
+        return;
+    }
+    QModelIndexList indexes = ui->tableView->selectionModel()->selection().indexes();
+    ChangePatientWidget* changePatientWidget = new ChangePatientWidget();
+    changePatientWidget->show();
 }

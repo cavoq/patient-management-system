@@ -39,7 +39,7 @@
      <string>Patientenverwaltungssystem</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="showPatientsButton">
     <property name="geometry">
      <rect>
       <x>480</x>
@@ -52,7 +52,7 @@
      <string>Ansehen</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QPushButton" name="addPatientsButton">
     <property name="geometry">
      <rect>
       <x>350</x>
@@ -65,7 +65,7 @@
      <string> Hinzufügen</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_3">
+   <widget class="QPushButton" name="changePatientsButto">
     <property name="geometry">
      <rect>
       <x>70</x>
@@ -78,7 +78,7 @@
      <string>Ändern</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_4">
+   <widget class="QPushButton" name="deletePatientsButton">
     <property name="geometry">
      <rect>
       <x>210</x>
@@ -91,7 +91,7 @@
      <string>Löschen</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_5">
+   <widget class="QPushButton" name="exportPatientsButton">
     <property name="geometry">
      <rect>
       <x>620</x>
@@ -117,7 +117,7 @@
      <string>Suche</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_6">
+   <widget class="QPushButton" name="cancelSelectionButton">
     <property name="geometry">
      <rect>
       <x>610</x>
