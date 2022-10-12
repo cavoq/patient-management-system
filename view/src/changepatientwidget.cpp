@@ -15,11 +15,13 @@ ChangePatientWidget::~ChangePatientWidget()
 
 void ChangePatientWidget::setFormData(PatientTableModel& patientTableModel, QModelIndexList& selectionIndexes)
 {
-    const QList<QLineEdit*> lineEdits = ui->formLayoutWidget->findChildren<QLineEdit*>();
-    for (int i = 0; i < lineEdits.count(); ++i) {
-        const QVariant columnData = patientTableModel.data(selectionIndexes[i]);
-        std::cout << columnData.toString().toStdString() << std::endl;
-        lineEdits[i]->setText(columnData.toString());
-    }
-    ui->birthDateDateEdit->setDate(patientTableModel.data(selectionIndexes[3]).toDate());
+    ui->titelLineEdit->setText(patientTableModel.data(selectionIndexes[0]).toString());
+    ui->firstNameLineEdit->setText(patientTableModel.data(selectionIndexes[1]).toString());
+    ui->nameLineEdit->setText(patientTableModel.data(selectionIndexes[2]).toString());
+    ui->birthDateDateEdit->setDate(QDate::fromString(patientTableModel.data(selectionIndexes[3]).toString(), "dd.MM.yyyy"));
+    ui->streetLineEdit->setText(patientTableModel.data(selectionIndexes[4]).toString());
+    ui->houseNumberLineEdit->setText(patientTableModel.data(selectionIndexes[5]).toString());
+    ui->pLZLineEdit->setText(patientTableModel.data(selectionIndexes[6]).toString());
+    ui->placeLineEdit->setText(patientTableModel.data(selectionIndexes[7]).toString());
+    ui->phoneNumberLineEdit->setText(patientTableModel.data(selectionIndexes[8]).toString());
 }
