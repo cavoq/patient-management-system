@@ -20,6 +20,18 @@ QVariant PatientTableModel::headerData(int section, Qt::Orientation orientation,
                 return tr("Nachname");
             case 3:
                 return tr("Geburtsdatum");
+            case 4:
+                return tr("Straße");
+            case 5:
+                return tr("Hausnummer");
+            case 6:
+                return tr("PLZ");
+            case 7:
+                return tr("Ort");
+            case 8:
+                return tr("Telefonnummer");
+            case 9:
+                return tr("Geschlecht");
             default:
                 break;
         }
@@ -99,7 +111,7 @@ bool PatientTableModel::removeRows(int position, int rows, const QModelIndex &in
     return true;
 }
 
-bool PatientTableModel::setData(const QModelIndex& index, const QVariant &value, int role)
+bool PatientTableModel::setData(const QModelIndex &index, const QVariant &value, int role)
 {
     if (index.isValid() && role == Qt::EditRole) {
         const int row = index.row();
@@ -117,18 +129,25 @@ bool PatientTableModel::setData(const QModelIndex& index, const QVariant &value,
                 break;
             case 3:
                 patient.birth_date = value.toDate();
+                break;
             case 4:
                 patient.address.street = value.toString();
+                break;
             case 5:
                 patient.address.house_number = value.toString();
+                break;
             case 6:
                 patient.address.plz = value.toInt();
+                break;
             case 7:
                 patient.address.location = value.toString();
+                break;
             case 8:
                 patient.phone_number = value.toString();
+                break;
             case 9:
                 patient.gender = value.toString();
+                break;
             default:
                 return false;
         }

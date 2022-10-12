@@ -11,7 +11,7 @@ class PatientTableModel : public QAbstractTableModel
 
 private:
     QList<Patient> patients;
-    const unsigned int column_count = 4;
+    const unsigned int column_count = 10;
 
 public:
     explicit PatientTableModel(const QList<Patient>& patients, QObject *parent = nullptr);

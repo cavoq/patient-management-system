@@ -63,40 +63,53 @@
      <widget class="QLineEdit" name="titelLineEdit"/>
     </item>
     <item row="1" column="0">
-     <widget class="QLabel" name="nameLabel">
-      <property name="text">
-       <string>Name</string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="1">
-     <widget class="QLineEdit" name="nameLineEdit"/>
-    </item>
-    <item row="2" column="0">
      <widget class="QLabel" name="firstNameLabel">
       <property name="text">
        <string>Vorname</string>
       </property>
      </widget>
     </item>
+    <item row="1" column="1">
+     <widget class="QLineEdit" name="firstNameLineEdit"/>
+    </item>
+    <item row="2" column="0">
+     <widget class="QLabel" name="nameLabel">
+      <property name="text">
+       <string>Name</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="1">
+     <widget class="QLineEdit" name="nameLineEdit"/>
+    </item>
     <item row="3" column="0">
+     <widget class="QLabel" name="birthDateLabel">
+      <property name="text">
+       <string>Geburtsdatum</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="1">
+     <widget class="QDateEdit" name="birthDateDateEdit"/>
+    </item>
+    <item row="4" column="0">
      <widget class="QLabel" name="streetLabel">
       <property name="text">
        <string>Straße</string>
       </property>
      </widget>
     </item>
-    <item row="3" column="1">
+    <item row="4" column="1">
      <widget class="QLineEdit" name="streetLineEdit"/>
     </item>
-    <item row="4" column="0">
+    <item row="5" column="0">
      <widget class="QLabel" name="houseNumberLabel">
       <property name="text">
        <string>Hausnummer</string>
       </property>
      </widget>
     </item>
-    <item row="4" column="1">
+    <item row="5" column="1">
      <widget class="QLineEdit" name="houseNumberLineEdit">
       <property name="text">
        <string/>
@@ -106,45 +119,35 @@
       </property>
      </widget>
     </item>
-    <item row="5" column="0">
+    <item row="6" column="0">
      <widget class="QLabel" name="pLZLabel">
       <property name="text">
        <string>PLZ</string>
       </property>
      </widget>
     </item>
-    <item row="5" column="1">
+    <item row="6" column="1">
      <widget class="QLineEdit" name="pLZLineEdit"/>
     </item>
-    <item row="6" column="0">
+    <item row="7" column="0">
      <widget class="QLabel" name="placeLabel">
       <property name="text">
        <string>Ort</string>
       </property>
      </widget>
     </item>
-    <item row="6" column="1">
+    <item row="7" column="1">
      <widget class="QLineEdit" name="placeLineEdit"/>
     </item>
-    <item row="7" column="0">
+    <item row="8" column="0">
      <widget class="QLabel" name="phoneNumberLabel">
       <property name="text">
        <string>Telefonnummer</string>
       </property>
      </widget>
     </item>
-    <item row="7" column="1">
-     <widget class="QLineEdit" name="phoneNumberLineEdit"/>
-    </item>
-    <item row="8" column="0">
-     <widget class="QLabel" name="birthDateLabel">
-      <property name="text">
-       <string>Geburtsdatum</string>
-      </property>
-     </widget>
-    </item>
     <item row="8" column="1">
-     <widget class="QDateEdit" name="birthDateDateEdit"/>
+     <widget class="QLineEdit" name="phoneNumberLineEdit"/>
     </item>
     <item row="9" column="0">
      <widget class="QLabel" name="genderLabel">
@@ -159,9 +162,6 @@
        <string>Geschlecht</string>
       </property>
      </widget>
-    </item>
-    <item row="2" column="1">
-     <widget class="QLineEdit" name="firstNameLineEdit"/>
     </item>
    </layout>
   </widget>

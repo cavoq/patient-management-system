@@ -23,8 +23,8 @@ public:
     ~MainWindow();
 
 private:
-    PatientManager* patientManager = new PatientManager();
-    PatientTableModel* patientTableModel;
-    Ui::MainWindow *ui;
+    PatientManager *patientManager = new PatientManager();
+    PatientTableModel *patientTableModel;
+    Ui::MainWindow* ui;
 };
 #endif // MAINWINDOW_H

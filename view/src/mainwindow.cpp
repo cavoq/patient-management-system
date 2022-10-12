@@ -46,5 +46,6 @@ void MainWindow::openChangePatientWidget()
     }
     QModelIndexList indexes = ui->tableView->selectionModel()->selection().indexes();
     ChangePatientWidget* changePatientWidget = new ChangePatientWidget();
+    changePatientWidget->setFormData(*patientTableModel, indexes);
     changePatientWidget->show();
 }
