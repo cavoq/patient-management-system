@@ -1,9 +1,11 @@
 #include "view/header/patientformwidget.h"
+#include "model/header/patienttablemodel.h"
 #include "ui_patientformwidget.h"
 
-PatientFormWidget::PatientFormWidget(QWidget *parent) :
+PatientFormWidget::PatientFormWidget(QWidget *parent, PatientTableModel *patientTableModel) :
     QWidget(parent),
-    ui(new Ui::PatientFormWidget)
+    ui(new Ui::PatientFormWidget),
+    patientTableModel(patientTableModel)
 {
     ui->setupUi(this);
     const QStringList genders {"Mann", "Frau", "Divers"};
@@ -20,6 +22,10 @@ PatientFormWidget::~PatientFormWidget()
 bool PatientFormWidget::verify()
 {
    return false;
+}
+
+void PatientFormWidget::accept() {
+
 }
 
 void PatientFormWidget::discard()

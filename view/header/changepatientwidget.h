@@ -14,8 +14,8 @@ class ChangePatientWidget : public PatientFormWidget
     Q_OBJECT
 
 public:
-    explicit ChangePatientWidget(QWidget *parent = nullptr);
-    void setFormData(PatientTableModel& patientTableModel, QModelIndexList& selectionIndexes);
+    explicit ChangePatientWidget(QWidget *parent = nullptr, PatientTableModel *patientTableModel = nullptr);
+    void setFormData(QModelIndexList& selectionIndexes);
     ~ChangePatientWidget();
 };
 
