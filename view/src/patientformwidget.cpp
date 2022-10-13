@@ -6,6 +6,8 @@ PatientFormWidget::PatientFormWidget(QWidget *parent) :
     ui(new Ui::PatientFormWidget)
 {
     ui->setupUi(this);
+    const QStringList genders {"Mann", "Frau", "Divers"};
+    ui->genderComboBox->addItems(genders);
     connect(ui->acceptButton, SIGNAL(clicked()), this, SLOT(verify()));
     connect(ui->discardButton, SIGNAL(clicked()), this, SLOT(discard()));
 }

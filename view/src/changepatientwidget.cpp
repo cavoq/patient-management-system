@@ -1,7 +1,6 @@
 #include "view/header/changepatientwidget.h"
 #include "model/header/patienttablemodel.h"
 #include "ui_patientformwidget.h"
-#include <iostream>
 
 ChangePatientWidget::ChangePatientWidget(QWidget *parent) : PatientFormWidget(parent)
 {
@@ -24,4 +23,5 @@ void ChangePatientWidget::setFormData(PatientTableModel& patientTableModel, QMod
     ui->pLZLineEdit->setText(patientTableModel.data(selectionIndexes[6]).toString());
     ui->placeLineEdit->setText(patientTableModel.data(selectionIndexes[7]).toString());
     ui->phoneNumberLineEdit->setText(patientTableModel.data(selectionIndexes[8]).toString());
+    ui->genderComboBox->setCurrentText(patientTableModel.data(selectionIndexes[9]).toString());
 }
