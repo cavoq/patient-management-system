@@ -14,14 +14,14 @@ ChangePatientWidget::~ChangePatientWidget()
 
 void ChangePatientWidget::setFormData(PatientTableModel& patientTableModel, QModelIndexList& selectionIndexes)
 {
-    ui->titelLineEdit->setText(patientTableModel.data(selectionIndexes[0]).toString());
-    ui->firstNameLineEdit->setText(patientTableModel.data(selectionIndexes[1]).toString());
-    ui->nameLineEdit->setText(patientTableModel.data(selectionIndexes[2]).toString());
-    ui->birthDateDateEdit->setDate(QDate::fromString(patientTableModel.data(selectionIndexes[3]).toString(), "dd.MM.yyyy"));
-    ui->streetLineEdit->setText(patientTableModel.data(selectionIndexes[4]).toString());
-    ui->houseNumberLineEdit->setText(patientTableModel.data(selectionIndexes[5]).toString());
-    ui->pLZLineEdit->setText(patientTableModel.data(selectionIndexes[6]).toString());
-    ui->placeLineEdit->setText(patientTableModel.data(selectionIndexes[7]).toString());
-    ui->phoneNumberLineEdit->setText(patientTableModel.data(selectionIndexes[8]).toString());
-    ui->genderComboBox->setCurrentText(patientTableModel.data(selectionIndexes[9]).toString());
+    ui->titelLineEdit->setText(patientTableModel.data(selectionIndexes[patientTableModel.TITEL]).toString());
+    ui->firstNameLineEdit->setText(patientTableModel.data(selectionIndexes[patientTableModel.VORNAME]).toString());
+    ui->nameLineEdit->setText(patientTableModel.data(selectionIndexes[patientTableModel.NACHNAME]).toString());
+    ui->birthDateDateEdit->setDate(QDate::fromString(patientTableModel.data(selectionIndexes[patientTableModel.GEBURTSDATUM]).toString(), "dd.MM.yyyy"));
+    ui->streetLineEdit->setText(patientTableModel.data(selectionIndexes[patientTableModel.STRASSE]).toString());
+    ui->houseNumberLineEdit->setText(patientTableModel.data(selectionIndexes[patientTableModel.HAUSNUMMER]).toString());
+    ui->pLZLineEdit->setText(patientTableModel.data(selectionIndexes[patientTableModel.PLZ]).toString());
+    ui->placeLineEdit->setText(patientTableModel.data(selectionIndexes[patientTableModel.ORT]).toString());
+    ui->phoneNumberLineEdit->setText(patientTableModel.data(selectionIndexes[patientTableModel.TELEFONNUMMER]).toString());
+    ui->genderComboBox->setCurrentText(patientTableModel.data(selectionIndexes[patientTableModel.GESCHLECHT]).toString());
 }

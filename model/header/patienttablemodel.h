@@ -14,6 +14,18 @@ private:
     const unsigned int column_count = 10;
 
 public:
+    enum columnIdentifier {
+        TITEL,
+        VORNAME,
+        NACHNAME,
+        GEBURTSDATUM,
+        STRASSE,
+        HAUSNUMMER,
+        PLZ,
+        ORT,
+        TELEFONNUMMER,
+        GESCHLECHT
+    };
     explicit PatientTableModel(const QList<Patient>& patients, QObject *parent = nullptr);
 
     // Header:
