@@ -24,7 +24,8 @@ bool PatientFormWidget::verify()
    return false;
 }
 
-void PatientFormWidget::accept() {
+void PatientFormWidget::accept()
+{
 
 }
 

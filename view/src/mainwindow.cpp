@@ -14,6 +14,9 @@ MainWindow::MainWindow(QWidget *parent)
     this->patientManager->load_from_json("patients.json");
     this->patientTableModel = new PatientTableModel(this->patientManager->getPatients(), this);
     ui->tableView->setModel(this->patientTableModel);
+    for (int i = 4; i < 10; ++i) {
+        ui->tableView->setColumnHidden(i, true);
+    }
     this->connectSignals();
 }
 

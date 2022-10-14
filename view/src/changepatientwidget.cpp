@@ -1,6 +1,7 @@
 #include "view/header/changepatientwidget.h"
 #include "model/header/patienttablemodel.h"
 #include "ui_patientformwidget.h"
+#include <iostream>
 
 ChangePatientWidget::ChangePatientWidget(QWidget *parent, PatientTableModel *patientTableModel) : PatientFormWidget(parent, patientTableModel)
 {
@@ -14,14 +15,19 @@ ChangePatientWidget::~ChangePatientWidget()
 
 void ChangePatientWidget::setFormData(QModelIndexList& selectionIndexes)
 {
-    ui->titelLineEdit->setText(patientTableModel->data(selectionIndexes[patientTableModel->TITEL]).toString());
-    ui->firstNameLineEdit->setText(patientTableModel->data(selectionIndexes[patientTableModel->VORNAME]).toString());
-    ui->nameLineEdit->setText(patientTableModel->data(selectionIndexes[patientTableModel->NACHNAME]).toString());
-    ui->birthDateDateEdit->setDate(QDate::fromString(patientTableModel->data(selectionIndexes[patientTableModel->GEBURTSDATUM]).toString(), "dd.MM.yyyy"));
-    ui->streetLineEdit->setText(patientTableModel->data(selectionIndexes[patientTableModel->STRASSE]).toString());
-    ui->houseNumberLineEdit->setText(patientTableModel->data(selectionIndexes[patientTableModel->HAUSNUMMER]).toString());
-    ui->pLZLineEdit->setText(patientTableModel->data(selectionIndexes[patientTableModel->PLZ]).toString());
-    ui->placeLineEdit->setText(patientTableModel->data(selectionIndexes[patientTableModel->ORT]).toString());
-    ui->phoneNumberLineEdit->setText(patientTableModel->data(selectionIndexes[patientTableModel->TELEFONNUMMER]).toString());
-    ui->genderComboBox->setCurrentText(patientTableModel->data(selectionIndexes[patientTableModel->GESCHLECHT]).toString());
+    const QList<QLineEdit*> lineEdits = ui->formLayoutWidget->findChildren<QLineEdit*>();
+    int column = patientTableModel->TITEL;
+    while (column < lineEdits.count()) {
+        if (column == patientTableModel->GEBURTSDATUM) {
+            column += 1;
+            continue;
+        }
+        const QString value = patientTableModel->data(selectionIndexes[column]).toString();
+        lineEdits[column]->setText(value);
+        column += 1;
+    }
+    const QDate birthDate = QDate::fromString(patientTableModel->data(selectionIndexes[patientTableModel->GEBURTSDATUM]).toString(), "dd.MM.yyyy");
+    ui->birthDateDateEdit->setDate(birthDate);
+    const QString gender = patientTableModel->data(selectionIndexes[patientTableModel->GESCHLECHT]).toString();
+    ui->genderComboBox->setCurrentText(gender);
 }
