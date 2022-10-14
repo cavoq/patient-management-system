@@ -12,6 +12,7 @@ class PatientTableModel : public QAbstractTableModel
 private:
     QList<Patient> patients;
     const unsigned int column_count = 10;
+    bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole) override;
 
 public:
     enum columnIdentifier {
@@ -36,7 +37,7 @@ public:
     int columnCount(const QModelIndex &parent = QModelIndex()) const override;
     bool removeRows(int position, int rows, const QModelIndex &index = QModelIndex()) override;
     bool insertRows(int position, int rows, const QModelIndex &index = QModelIndex()) override;
-    bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole) override;
+    bool setRowData(const QModelIndexList &indexes, const QVariantList &values, int role = Qt::EditRole);
     const QList<Patient>& getPatients() const;
 
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;

@@ -160,6 +160,19 @@ bool PatientTableModel::setData(const QModelIndex &index, const QVariant &value,
     return false;
 }
 
+bool PatientTableModel::setRowData(const QModelIndexList &indexes, const QVariantList &values, int role)
+{
+    if (indexes.count() != values.count() || role != Qt::EditRole) {
+        return false;
+    }
+    for (int i = 0; i < indexes.count(); ++i) {
+        if (!setData(indexes[i], values[i], role)) {
+            return false;
+        }
+    }
+    return true;
+}
+
 const QList<Patient>& PatientTableModel::getPatients() const
 {
     return this->patients;

@@ -21,6 +21,7 @@ PatientFormWidget::~PatientFormWidget()
 
 bool PatientFormWidget::verify()
 {
+
    return false;
 }
 
