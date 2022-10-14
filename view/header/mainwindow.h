@@ -16,6 +16,7 @@ class MainWindow : public QMainWindow
 public slots:
     void openAddPatientWidget();
     void openChangePatientWidget();
+    void openShowPatientWidget();
 
 public:
     MainWindow(QWidget *parent = nullptr);

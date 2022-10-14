@@ -12,16 +12,14 @@ class PatientFormWidget : public QWidget
 {
     Q_OBJECT
 
-public slots:
-    void discard();
-    void accept();
-    bool verify();
-
 public:
-    explicit PatientFormWidget(QWidget *parent = nullptr, PatientTableModel *patientTableModel = nullptr);
+    explicit PatientFormWidget(QWidget *parent = nullptr, PatientTableModel *patientTableModel = nullptr, const QModelIndexList &indexes = QModelIndexList());
     ~PatientFormWidget();
     Ui::PatientFormWidget *ui;
     PatientTableModel *patientTableModel;
+    const QModelIndexList &indexes;
+    QVariantList getFormData();
+    void setFormData();
 };
 
 #endif // PATIENTFORMWIDGET_H

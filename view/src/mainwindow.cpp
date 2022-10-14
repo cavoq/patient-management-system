@@ -4,6 +4,7 @@
 #include "ui_mainwindow.h"
 #include "view/header/addpatientwidget.h"
 #include "view/header/changepatientwidget.h"
+#include "view/header/showpatientwidget.h"
 #include <QMessageBox>
 
 MainWindow::MainWindow(QWidget *parent)
@@ -22,6 +23,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
+    delete patientTableModel;
     delete ui;
 }
 
@@ -29,6 +31,7 @@ void MainWindow::connectSignals()
 {
     connect(ui->addPatientsButton, SIGNAL(clicked()), this, SLOT(openAddPatientWidget()));
     connect(ui->changePatientsButto, SIGNAL(clicked()), this, SLOT(openChangePatientWidget()));
+    connect(ui->showPatientsButton, SIGNAL(clicked()), this, SLOT(openShowPatientWidget()));
 }
 
 void MainWindow::openAddPatientWidget()
@@ -48,7 +51,14 @@ void MainWindow::openChangePatientWidget()
         return;
     }
     QModelIndexList indexes = ui->tableView->selectionModel()->selection().indexes();
-    ChangePatientWidget* changePatientWidget = new ChangePatientWidget(nullptr, patientTableModel);
-    changePatientWidget->setFormData(indexes);
+    ChangePatientWidget* changePatientWidget = new ChangePatientWidget(nullptr, patientTableModel, indexes);
+    changePatientWidget->setFormData();
     changePatientWidget->show();
+}
+
+void MainWindow::openShowPatientWidget()
+{
+    QModelIndexList indexes = ui->tableView->selectionModel()->selection().indexes();
+    ShowPatientWidget* showPatientWidget = new ShowPatientWidget(nullptr, patientTableModel, indexes);
+    showPatientWidget->show();
 }

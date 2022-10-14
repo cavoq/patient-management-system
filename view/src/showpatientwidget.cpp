@@ -1,11 +1,12 @@
 #include "view/header/showpatientwidget.h"
-#include "ui_showpatientwidget.h"
+#include "ui_patientformwidget.h"
 
-ShowPatientWidget::ShowPatientWidget(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::ShowPatientWidget)
+ShowPatientWidget::ShowPatientWidget(QWidget *parent, PatientTableModel *patientTableModel, const QModelIndexList &indexes) : PatientFormWidget(parent, patientTableModel, indexes)
 {
-    ui->setupUi(this);
+   this->setWindowTitle("Patientendaten ansehen");
+   ui->acceptButton->hide();
+   ui->discardButton->hide();
+   setFormData();
 }
 
 ShowPatientWidget::~ShowPatientWidget()

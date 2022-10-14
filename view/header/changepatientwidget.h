@@ -13,9 +13,13 @@ class ChangePatientWidget : public PatientFormWidget
 {
     Q_OBJECT
 
+public slots:
+    void discard();
+    void accept();
+    bool verify();
+
 public:
-    explicit ChangePatientWidget(QWidget *parent = nullptr, PatientTableModel *patientTableModel = nullptr);
-    void setFormData(QModelIndexList& selectionIndexes);
+    explicit ChangePatientWidget(QWidget *parent = nullptr, PatientTableModel *patientTableModel = nullptr, const QModelIndexList &indexes = QModelIndexList());
     ~ChangePatientWidget();
 };
 

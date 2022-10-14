@@ -2,16 +2,15 @@
 #include "model/header/patienttablemodel.h"
 #include "ui_patientformwidget.h"
 
-PatientFormWidget::PatientFormWidget(QWidget *parent, PatientTableModel *patientTableModel) :
+PatientFormWidget::PatientFormWidget(QWidget *parent, PatientTableModel *patientTableModel, const QModelIndexList &indexes):
     QWidget(parent),
     ui(new Ui::PatientFormWidget),
-    patientTableModel(patientTableModel)
+    patientTableModel(patientTableModel),
+    indexes(indexes)
 {
     ui->setupUi(this);
     const QStringList genders {"Mann", "Frau", "Divers"};
     ui->genderComboBox->addItems(genders);
-    connect(ui->acceptButton, SIGNAL(clicked()), this, SLOT(verify()));
-    connect(ui->discardButton, SIGNAL(clicked()), this, SLOT(discard()));
 }
 
 PatientFormWidget::~PatientFormWidget()
@@ -19,18 +18,39 @@ PatientFormWidget::~PatientFormWidget()
     delete ui;
 }
 
-bool PatientFormWidget::verify()
+QVariantList PatientFormWidget::getFormData()
 {
-
-   return false;
+    QVariantList formData;
+    const QVariant titel = QVariant(ui->titelLineEdit->text());
+    const QVariant firstName = QVariant(ui->firstNameLineEdit->text());
+    const QVariant lastName = QVariant(ui->firstNameLineEdit->text());
+    const QVariant birthDate = QVariant(ui->birthDateDateEdit->date());
+    const QVariant street = QVariant(ui->streetLineEdit->text());
+    const QVariant houseNumber = QVariant(ui->houseNumberLineEdit->text());
+    const QVariant plz = QVariant(ui->pLZLineEdit->text());
+    const QVariant location = QVariant(ui->placeLineEdit->text());
+    const QVariant phoneNumber = QVariant(ui->phoneNumberLineEdit->text());
+    const QVariant gender = QVariant(ui->genderComboBox->currentText());
+    formData << titel << firstName << lastName << birthDate << street
+             << houseNumber << plz << location << phoneNumber << gender;
+    return formData;
 }
 
-void PatientFormWidget::accept()
+void PatientFormWidget::setFormData()
 {
-
-}
-
-void PatientFormWidget::discard()
-{
-    this->close();
+    const QList<QLineEdit*> lineEdits = ui->formLayoutWidget->findChildren<QLineEdit*>();
+    int column = patientTableModel->TITEL;
+    while (column < lineEdits.count()) {
+        if (column == patientTableModel->GEBURTSDATUM) {
+            column += 1;
+            continue;
+        }
+        const QString value = patientTableModel->data(indexes.at(column)).toString();
+        lineEdits[column]->setText(value);
+        column += 1;
+    }
+    const QDate birthDate = QDate::fromString(patientTableModel->data(indexes.at(patientTableModel->GEBURTSDATUM)).toString(), "dd.MM.yyyy");
+    ui->birthDateDateEdit->setDate(birthDate);
+    const QString gender = patientTableModel->data(indexes.at(patientTableModel->GESCHLECHT)).toString();
+    ui->genderComboBox->setCurrentText(gender);
 }

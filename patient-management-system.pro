@@ -37,8 +37,7 @@ HEADERS += \
 FORMS += \
     view/ui/deletedialog.ui \
     view/ui/mainwindow.ui \
-    view/ui/patientformwidget.ui \
-    view/ui/showpatientwidget.ui
+    view/ui/patientformwidget.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
