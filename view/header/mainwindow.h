@@ -28,7 +28,7 @@ private:
     PatientManager *patientManager = new PatientManager();
     PatientTableModel *patientTableModel;
     Ui::MainWindow* ui;
-    void showWarning(QString title, QString text);
+    void showWarning(const QString &title, const QString &text);
     bool checkSelection();
 };
 #endif // MAINWINDOW_H

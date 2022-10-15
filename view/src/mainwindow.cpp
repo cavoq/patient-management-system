@@ -54,17 +54,17 @@ void MainWindow::openChangePatientWidget()
 }
 
 bool MainWindow::checkSelection() {
-    const QModelIndex selection = ui->tableView->selectionModel()->currentIndex();
-    if (!selection.isValid()) {
+    const QModelIndex currentIndex = ui->tableView->selectionModel()->currentIndex();
+    if (!currentIndex.isValid() || !ui->tableView->selectionModel()->isSelected(currentIndex)) {
         return false;
     }
     return true;
 }
 
-void showWarning(QString title, QString text) {
+void MainWindow::showWarning(const QString &title, const QString &message) {
     QMessageBox warning;
     warning.setWindowTitle(title);
-    warning.setText(text);
+    warning.setText(message);
     warning.exec();
 }
 
