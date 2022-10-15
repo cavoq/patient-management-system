@@ -5,7 +5,7 @@
 ChangePatientWidget::ChangePatientWidget(QWidget *parent, PatientTableModel *patientTableModel, const QModelIndexList &indexes) : PatientFormWidget(parent, patientTableModel, indexes)
 {
     this->setWindowTitle("Patientendaten ändern");
-    connect(ui->acceptButton, SIGNAL(clicked()), this, SLOT(verify()));
+    connect(ui->acceptButton, SIGNAL(clicked()), this, SLOT(accept()));
     connect(ui->discardButton, SIGNAL(clicked()), this, SLOT(discard()));
 }
 
@@ -23,6 +23,7 @@ bool ChangePatientWidget::verify()
 void ChangePatientWidget::accept()
 {
    QVariantList formData = getFormData();
+   patientTableModel->setRowData(indexes, formData);
 }
 
 void ChangePatientWidget::discard()

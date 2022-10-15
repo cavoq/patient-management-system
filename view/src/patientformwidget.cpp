@@ -1,6 +1,8 @@
 #include "view/header/patientformwidget.h"
 #include "model/header/patienttablemodel.h"
 #include "ui_patientformwidget.h"
+#include <iostream>
+#include <ostream>
 
 PatientFormWidget::PatientFormWidget(QWidget *parent, PatientTableModel *patientTableModel, const QModelIndexList &indexes):
     QWidget(parent),
@@ -33,6 +35,7 @@ QVariantList PatientFormWidget::getFormData()
     const QVariant gender = QVariant(ui->genderComboBox->currentText());
     formData << titel << firstName << lastName << birthDate << street
              << houseNumber << plz << location << phoneNumber << gender;
+    std::cout << formData.first().toString().toStdString() << std::endl;
     return formData;
 }
 

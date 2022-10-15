@@ -6,6 +6,7 @@ ShowPatientWidget::ShowPatientWidget(QWidget *parent, PatientTableModel *patient
    this->setWindowTitle("Patientendaten ansehen");
    ui->acceptButton->hide();
    ui->discardButton->hide();
+   this->adjustSize();
    setFormData();
 }
 

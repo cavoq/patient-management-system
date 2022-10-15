@@ -17,6 +17,7 @@ public slots:
     void openAddPatientWidget();
     void openChangePatientWidget();
     void openShowPatientWidget();
+    void cancelSelection();
 
 public:
     MainWindow(QWidget *parent = nullptr);
@@ -27,5 +28,7 @@ private:
     PatientManager *patientManager = new PatientManager();
     PatientTableModel *patientTableModel;
     Ui::MainWindow* ui;
+    void showWarning(QString title, QString text);
+    bool checkSelection();
 };
 #endif // MAINWINDOW_H
