@@ -47,9 +47,8 @@ void MainWindow::openChangePatientWidget()
         showWarning("Warnung", "Es wurde kein Patient zum bearbeiten ausgewählt");
         return;
     }
-    QModelIndexList selection = ui->tableView->selectionModel()->selection().indexes();
-    ChangePatientWidget* changePatientWidget = new ChangePatientWidget(nullptr, patientTableModel, selection);
-    changePatientWidget->setFormData();
+    QModelIndexList* selection = new QModelIndexList(ui->tableView->selectionModel()->selection().indexes());
+    ChangePatientWidget* changePatientWidget = new ChangePatientWidget(nullptr, patientTableModel, *selection);
     changePatientWidget->show();
 }
 
@@ -74,8 +73,8 @@ void MainWindow::openShowPatientWidget()
         showWarning("Warnung", "Es wurde kein Patient zum ansehen ausgewählt");
         return;
     }
-    QModelIndexList indexes = ui->tableView->selectionModel()->selection().indexes();
-    ShowPatientWidget* showPatientWidget = new ShowPatientWidget(nullptr, patientTableModel, indexes);
+    QModelIndexList* selection = new QModelIndexList(ui->tableView->selectionModel()->selection().indexes());
+    ShowPatientWidget* showPatientWidget = new ShowPatientWidget(nullptr, patientTableModel, *selection);
     showPatientWidget->show();
 }
 

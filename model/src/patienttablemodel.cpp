@@ -166,9 +166,9 @@ bool PatientTableModel::setRowData(const QModelIndexList &indexes, const QVarian
     if (indexes.count() != values.count()) {
         return false;
     }
-    for (int i = 0; i < indexes.count(); ++i) {
+
+    for (int i = 0; i < values.count(); ++i) {
         if (!setData(indexes[i], values[i], role)) {
-            std::cout << "False" << "\n";
             return false;
         }
     }

@@ -17,6 +17,7 @@ PatientFormWidget::PatientFormWidget(QWidget *parent, PatientTableModel *patient
 
 PatientFormWidget::~PatientFormWidget()
 {
+    delete &indexes;
     delete ui;
 }
 
@@ -25,7 +26,7 @@ QVariantList PatientFormWidget::getFormData()
     QVariantList formData;
     const QVariant titel = QVariant(ui->titelLineEdit->text());
     const QVariant firstName = QVariant(ui->firstNameLineEdit->text());
-    const QVariant lastName = QVariant(ui->firstNameLineEdit->text());
+    const QVariant lastName = QVariant(ui->nameLineEdit->text());
     const QVariant birthDate = QVariant(ui->birthDateDateEdit->date());
     const QVariant street = QVariant(ui->streetLineEdit->text());
     const QVariant houseNumber = QVariant(ui->houseNumberLineEdit->text());
@@ -35,7 +36,6 @@ QVariantList PatientFormWidget::getFormData()
     const QVariant gender = QVariant(ui->genderComboBox->currentText());
     formData << titel << firstName << lastName << birthDate << street
              << houseNumber << plz << location << phoneNumber << gender;
-    std::cout << formData.first().toString().toStdString() << std::endl;
     return formData;
 }
 
