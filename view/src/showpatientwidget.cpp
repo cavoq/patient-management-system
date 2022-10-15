@@ -1,7 +1,8 @@
 #include "view/header/showpatientwidget.h"
 #include "ui_patientformwidget.h"
 
-ShowPatientWidget::ShowPatientWidget(QWidget *parent, PatientTableModel *patientTableModel, const QModelIndexList &indexes) : PatientFormWidget(parent, patientTableModel, indexes)
+ShowPatientWidget::ShowPatientWidget(QWidget *parent, PatientTableModel *patientTableModel, const QModelIndexList &selectionIndexes) :
+    PatientFormWidget(parent, patientTableModel, selectionIndexes)
 {
    this->setWindowTitle("Patientendaten ansehen");
    ui->acceptButton->hide();
@@ -12,5 +13,6 @@ ShowPatientWidget::ShowPatientWidget(QWidget *parent, PatientTableModel *patient
 
 ShowPatientWidget::~ShowPatientWidget()
 {
+    delete &selectionIndexes;
     delete ui;
 }

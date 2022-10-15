@@ -14,7 +14,7 @@ class ShowPatientWidget : public PatientFormWidget
     Q_OBJECT
 
 public:
-    explicit ShowPatientWidget(QWidget *parent = nullptr, PatientTableModel *patientTableModel = nullptr, const QModelIndexList &indexes = QModelIndexList());
+    explicit ShowPatientWidget(QWidget *parent = nullptr, PatientTableModel *patientTableModel = nullptr, const QModelIndexList &selectionIndexes = QModelIndexList());
     ~ShowPatientWidget();
 };
 

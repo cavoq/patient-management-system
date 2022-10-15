@@ -2,8 +2,8 @@
 #define CHANGEPATIENTWIDGET_H
 
 #include <QWidget>
-#include "model/header/patienttablemodel.h"
 #include "view/header/patientformwidget.h"
+#include "model/header/patienttablemodel.h"
 
 namespace Ui {
 class ChangePatientWidget;
@@ -19,7 +19,7 @@ public slots:
     bool verify();
 
 public:
-    explicit ChangePatientWidget(QWidget *parent = nullptr, PatientTableModel *patientTableModel = nullptr, const QModelIndexList &indexes = QModelIndexList());
+    explicit ChangePatientWidget(QWidget *parent = nullptr, PatientTableModel *patientTableModel = nullptr, const QModelIndexList &selectionIndexes = QModelIndexList());
     ~ChangePatientWidget();
 };
 

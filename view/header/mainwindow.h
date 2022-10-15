@@ -17,6 +17,7 @@ public slots:
     void openAddPatientWidget();
     void openChangePatientWidget();
     void openShowPatientWidget();
+    void openDeletePatientDialog();
     void cancelSelection();
 
 public:

@@ -1,9 +1,10 @@
 #include "view/header/changepatientwidget.h"
-#include "model/header/patienttablemodel.h"
 #include "ui_patientformwidget.h"
-#include <iostream>
+#include "view/header/patientformwidget.h"
+#include "model/header/patienttablemodel.h"
 
-ChangePatientWidget::ChangePatientWidget(QWidget *parent, PatientTableModel *patientTableModel, const QModelIndexList &indexes) : PatientFormWidget(parent, patientTableModel, indexes)
+ChangePatientWidget::ChangePatientWidget(QWidget *parent, PatientTableModel *patientTableModel, const QModelIndexList &selectionIndexes) :
+    PatientFormWidget(parent, patientTableModel, selectionIndexes)
 {
     this->setWindowTitle("Patientendaten ändern");
     connect(ui->acceptButton, SIGNAL(clicked()), this, SLOT(accept()));
@@ -13,19 +14,19 @@ ChangePatientWidget::ChangePatientWidget(QWidget *parent, PatientTableModel *pat
 
 ChangePatientWidget::~ChangePatientWidget()
 {
+    delete &selectionIndexes;
     delete ui;
 }
 
 bool ChangePatientWidget::verify()
 {
-
    return false;
 }
 
 void ChangePatientWidget::accept()
 {
    QVariantList formData = getFormData();
-   patientTableModel->setRowData(indexes, formData);
+   patientTableModel->setRowData(selectionIndexes, formData);
    this->close();
 }
 

@@ -4,6 +4,7 @@
 #include "ui_mainwindow.h"
 #include "view/header/addpatientwidget.h"
 #include "view/header/changepatientwidget.h"
+#include "view/header/deletedialog.h"
 #include "view/header/showpatientwidget.h"
 #include <QMessageBox>
 
@@ -33,6 +34,7 @@ void MainWindow::connectSignals()
     connect(ui->changePatientsButto, SIGNAL(clicked()), this, SLOT(openChangePatientWidget()));
     connect(ui->showPatientsButton, SIGNAL(clicked()), this, SLOT(openShowPatientWidget()));
     connect(ui->cancelSelectionButton, SIGNAL(clicked()), this, SLOT(cancelSelection()));
+    connect(ui->deletePatientsButton, SIGNAL(clicked()), this, SLOT(openDeletePatientDialog()));
 }
 
 void MainWindow::openAddPatientWidget()
@@ -47,8 +49,8 @@ void MainWindow::openChangePatientWidget()
         showWarning("Warnung", "Es wurde kein Patient zum bearbeiten ausgewählt");
         return;
     }
-    QModelIndexList* selection = new QModelIndexList(ui->tableView->selectionModel()->selection().indexes());
-    ChangePatientWidget* changePatientWidget = new ChangePatientWidget(nullptr, patientTableModel, *selection);
+    QModelIndexList* selectionIndexes = new QModelIndexList(ui->tableView->selectionModel()->selection().indexes());
+    ChangePatientWidget* changePatientWidget = new ChangePatientWidget(nullptr, patientTableModel, *selectionIndexes);
     changePatientWidget->show();
 }
 
@@ -73,9 +75,20 @@ void MainWindow::openShowPatientWidget()
         showWarning("Warnung", "Es wurde kein Patient zum ansehen ausgewählt");
         return;
     }
-    QModelIndexList* selection = new QModelIndexList(ui->tableView->selectionModel()->selection().indexes());
-    ShowPatientWidget* showPatientWidget = new ShowPatientWidget(nullptr, patientTableModel, *selection);
+    QModelIndexList* selectionIndexes = new QModelIndexList(ui->tableView->selectionModel()->selection().indexes());
+    ShowPatientWidget* showPatientWidget = new ShowPatientWidget(nullptr, patientTableModel, *selectionIndexes);
     showPatientWidget->show();
+}
+
+void MainWindow::openDeletePatientDialog()
+{
+    if (!checkSelection()) {
+        showWarning("Warnung", "Es wurde kein Patient zum löschen ausgewählt");
+        return;
+    }
+    QModelIndexList* selectionIndexes = new QModelIndexList(ui->tableView->selectionModel()->selection().indexes());
+    DeleteDialog* deleteDialog = new DeleteDialog(nullptr, patientTableModel, *selectionIndexes);
+    deleteDialog->show();
 }
 
 void MainWindow::cancelSelection()

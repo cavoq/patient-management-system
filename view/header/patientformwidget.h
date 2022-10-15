@@ -13,11 +13,11 @@ class PatientFormWidget : public QWidget
     Q_OBJECT
 
 public:
-    explicit PatientFormWidget(QWidget *parent = nullptr, PatientTableModel *patientTableModel = nullptr, const QModelIndexList &indexes = QModelIndexList());
+    explicit PatientFormWidget(QWidget *parent = nullptr, PatientTableModel *patientTableModel = nullptr, const QModelIndexList &selectionIndexes = QModelIndexList());
     ~PatientFormWidget();
     Ui::PatientFormWidget *ui;
     PatientTableModel *patientTableModel;
-    const QModelIndexList &indexes;
+    const QModelIndexList &selectionIndexes;
     QVariantList getFormData();
     void setFormData();
 };

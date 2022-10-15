@@ -4,11 +4,11 @@
 #include <iostream>
 #include <ostream>
 
-PatientFormWidget::PatientFormWidget(QWidget *parent, PatientTableModel *patientTableModel, const QModelIndexList &indexes):
+PatientFormWidget::PatientFormWidget(QWidget *parent, PatientTableModel *patientTableModel, const QModelIndexList &selectionIndexes) :
     QWidget(parent),
     ui(new Ui::PatientFormWidget),
     patientTableModel(patientTableModel),
-    indexes(indexes)
+    selectionIndexes(selectionIndexes)
 {
     ui->setupUi(this);
     const QStringList genders {"Mann", "Frau", "Divers"};
@@ -17,7 +17,7 @@ PatientFormWidget::PatientFormWidget(QWidget *parent, PatientTableModel *patient
 
 PatientFormWidget::~PatientFormWidget()
 {
-    delete &indexes;
+    delete &selectionIndexes;
     delete ui;
 }
 
@@ -48,12 +48,12 @@ void PatientFormWidget::setFormData()
             column += 1;
             continue;
         }
-        const QString value = patientTableModel->data(indexes.at(column)).toString();
+        const QString value = patientTableModel->data(selectionIndexes.at(column)).toString();
         lineEdits[column]->setText(value);
         column += 1;
     }
-    const QDate birthDate = QDate::fromString(patientTableModel->data(indexes.at(patientTableModel->GEBURTSDATUM)).toString(), "dd.MM.yyyy");
+    const QDate birthDate = QDate::fromString(patientTableModel->data(selectionIndexes.at(patientTableModel->GEBURTSDATUM)).toString(), "dd.MM.yyyy");
     ui->birthDateDateEdit->setDate(birthDate);
-    const QString gender = patientTableModel->data(indexes.at(patientTableModel->GESCHLECHT)).toString();
+    const QString gender = patientTableModel->data(selectionIndexes.at(patientTableModel->GESCHLECHT)).toString();
     ui->genderComboBox->setCurrentText(gender);
 }
