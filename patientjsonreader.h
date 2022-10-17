@@ -1,6 +1,5 @@
 /* Class that is responsible for reading the patients from a json file */
 
-
 #ifndef PATIENTJSONREADER_H
 #define PATIENTJSONREADER_H
 

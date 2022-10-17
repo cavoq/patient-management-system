@@ -104,7 +104,7 @@
      <string>Exportieren</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit">
+   <widget class="QLineEdit" name="searchLineEdit">
     <property name="geometry">
      <rect>
       <x>50</x>
@@ -114,7 +114,7 @@
      </rect>
     </property>
     <property name="placeholderText">
-     <string>Suche</string>
+     <string>Suche: Vorname, Name, Geburtsdatum</string>
     </property>
    </widget>
    <widget class="QPushButton" name="cancelSelectionButton">

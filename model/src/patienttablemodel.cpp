@@ -21,18 +21,6 @@ QVariant PatientTableModel::headerData(int section, Qt::Orientation orientation,
                 return tr("Nachname");
             case 3:
                 return tr("Geburtsdatum");
-            case 4:
-                return tr("Straße");
-            case 5:
-                return tr("Hausnummer");
-            case 6:
-                return tr("PLZ");
-            case 7:
-                return tr("Ort");
-            case 8:
-                return tr("Telefonnummer");
-            case 9:
-                return tr("Geschlecht");
             default:
                 break;
         }

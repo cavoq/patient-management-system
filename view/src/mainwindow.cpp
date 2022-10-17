@@ -1,5 +1,6 @@
 #include "view/header/mainwindow.h"
 #include "model/header/patienttablemodel.h"
+#include "qjsondocument.h"
 #include "ui_mainwindow.h"
 #include "view/header/addpatientwidget.h"
 #include "view/header/changepatientwidget.h"
@@ -14,15 +15,11 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    ui->centralwidget->adjustSize();
-    QList<Patient> patients = this->patientJsonManager->readFromJson("patients.json");
-    this->patientTableModel = new PatientTableModel(patients, this);
-    this->sortModel->setSourceModel(patientTableModel);
-    ui->tableView->setModel(this->sortModel);
-    for (int i = 4; i < 10; ++i) {
-        ui->tableView->setColumnHidden(i, true);
-    }
-    this->connectSignals();
+    loadPatients();
+    sortProxyModel->setSourceModel(patientTableModel);
+    ui->tableView->setModel(sortProxyModel);
+    hideColumns();
+    connectSignals();
 }
 
 MainWindow::~MainWindow()
@@ -30,6 +27,24 @@ MainWindow::~MainWindow()
     patientJsonWriter->writeToJson("patients.json", patientTableModel->getPatients());
     delete patientTableModel;
     delete ui;
+}
+
+void MainWindow::loadPatients()
+{
+    try {
+        QList<Patient> patients = patientJsonReader->readFromJson("patients.json");
+        patientTableModel = new PatientTableModel(patients, this);
+    } catch (QJsonParseError e) {
+        showWarning("Error", "Das lesen der Patientendaten schlug fehl");
+        return;
+    }
+}
+
+void MainWindow::hideColumns()
+{
+    for (int column = patientTableModel->STRASSE; column < patientTableModel->GESCHLECHT; ++column) {
+            ui->tableView->setColumnHidden(column, true);
+    }
 }
 
 void MainWindow::connectSignals()
@@ -40,6 +55,7 @@ void MainWindow::connectSignals()
     connect(ui->cancelSelectionButton, SIGNAL(clicked()), this, SLOT(cancelSelection()));
     connect(ui->deletePatientsButton, SIGNAL(clicked()), this, SLOT(openDeletePatientDialog()));
     connect(ui->exportPatientsButton, SIGNAL(clicked()), this, SLOT(exportPatients()));
+    connect(ui->searchLineEdit, SIGNAL(textEdited(QString)), this, SLOT(search(QString)));
 }
 
 void MainWindow::openAddPatientWidget()
@@ -110,6 +126,23 @@ void MainWindow::exportPatients()
     std::sort(selection.begin(), selection.end());
     QList<Patient> selectedPatients = patientTableModel->getPatients(selection);
     patientJsonWriter->writeToJson(getFileFromDialog(), selectedPatients);
+}
+
+void MainWindow::search(const QString &searchString)
+{
+    QStringList searchTexts = getSearchTexts(searchString);
+    int column = patientTableModel->VORNAME;
+    for (QString &searchText: searchTexts) {
+        QString findName = searchText.trimmed();
+        sortProxyModel->setFilterKeyColumn(column);
+        sortProxyModel->setFilterFixedString(findName);
+        column += 1;
+    }
+}
+
+QStringList MainWindow::getSearchTexts(const QString &searchString) {
+    QStringList searchTexts = searchString.split(",");
+    return searchTexts;
 }
 
 QString MainWindow::getFileFromDialog()

@@ -22,18 +22,22 @@ public slots:
     void openDeletePatientDialog();
     void cancelSelection();
     void exportPatients();
+    void search(const QString &searchString);
 
 public:
     MainWindow(QWidget *parent = nullptr);
-    void connectSignals();
     ~MainWindow();
 
 private:
-    PatientJsonReader *patientJsonManager = new PatientJsonReader();
+    PatientJsonReader *patientJsonReader = new PatientJsonReader();
     PatientJsonWriter *patientJsonWriter = new PatientJsonWriter();
-    QSortFilterProxyModel *sortModel = new QSortFilterProxyModel;
+    QSortFilterProxyModel *sortProxyModel = new QSortFilterProxyModel;
     PatientTableModel *patientTableModel;
-    Ui::MainWindow* ui;
+    Ui::MainWindow *ui;
+    void loadPatients();
+    void connectSignals();
+    void hideColumns();
+    QStringList getSearchTexts(const QString &searchString);
     void showWarning(const QString &title, const QString &text);
     bool checkSelection();
     QString getFileFromDialog();
