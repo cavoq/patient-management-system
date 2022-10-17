@@ -1,5 +1,5 @@
 #include "view/header/mainwindow.h"
-#include "model/header/patientmanager.h"
+#include "model/header/patientjsonmanager.h"
 #include "model/header/patienttablemodel.h"
 #include "ui_mainwindow.h"
 #include "view/header/addpatientwidget.h"
@@ -14,8 +14,8 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    this->patientManager->load_from_json("patients.json");
-    this->patientTableModel = new PatientTableModel(this->patientManager->getPatients(), this);
+    QList<Patient> patients = this->patientJsonManager->loadFromJson("patients.json");
+    this->patientTableModel = new PatientTableModel(patients, this);
     this->sortModel->setSourceModel(patientTableModel);
     ui->tableView->setModel(this->sortModel);
     for (int i = 4; i < 10; ++i) {

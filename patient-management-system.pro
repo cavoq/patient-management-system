@@ -11,8 +11,8 @@ CONFIG += c++17
 SOURCES += \
     main.cpp \
     model/src/address.cpp \
-    model/src/patientmanager.cpp \
     model/src/patient.cpp \
+    model/src/patientjsonmanager.cpp \
     model/src/patienttablemodel.cpp \
     view/src/addpatientwidget.cpp \
     view/src/changepatientwidget.cpp \
@@ -25,7 +25,7 @@ HEADERS += \
     model/header/address.h \
     model/header/name.h \
     model/header/patient.h \
-    model/header/patientmanager.h \
+    model/header/patientjsonmanager.h \
     model/header/patienttablemodel.h \
     view/header/addpatientwidget.h \
     view/header/changepatientwidget.h \

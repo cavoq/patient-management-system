@@ -2,7 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "model/header/patientmanager.h"
+#include "model/header/patientjsonmanager.h"
 #include "model/header/patienttablemodel.h"
 
 QT_BEGIN_NAMESPACE
@@ -27,7 +27,7 @@ public:
     ~MainWindow();
 
 private:
-    PatientManager *patientManager = new PatientManager();
+    PatientJsonManager *patientJsonManager = new PatientJsonManager();
     QSortFilterProxyModel *sortModel = new QSortFilterProxyModel;
     PatientTableModel *patientTableModel;
     Ui::MainWindow* ui;
