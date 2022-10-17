@@ -7,6 +7,7 @@
 #include "view/header/deletedialog.h"
 #include "view/header/showpatientwidget.h"
 #include <QMessageBox>
+#include <QFileDialog>
 #include <iostream>
 
 MainWindow::MainWindow(QWidget *parent)
@@ -14,6 +15,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    ui->centralwidget->adjustSize();
     QList<Patient> patients = this->patientJsonManager->readFromJson("patients.json");
     this->patientTableModel = new PatientTableModel(patients, this);
     this->sortModel->setSourceModel(patientTableModel);
@@ -108,4 +110,12 @@ void MainWindow::exportPatients()
     QModelIndexList selection = ui->tableView->selectionModel()->selectedRows();
     std::sort(selection.begin(), selection.end());
     QList<Patient> selectedPatients = patientTableModel->getPatients(selection);
+    patientJsonManager->writeToJson(getFileFromDialog(), selectedPatients);
+}
+
+QString MainWindow::getFileFromDialog()
+{
+    QString jsonFileName = QFileDialog::getSaveFileName(this,
+         tr("Open Json File"), "/home", tr("Json Files (*.json)"));
+    return jsonFileName;
 }

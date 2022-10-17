@@ -7,9 +7,9 @@ class Address
 {
 public:
     Address();
-    Address(QString street, QString house_number, int plz, QString location);
+    Address(QString street, QString houseNumber, int plz, QString location);
     QString street;
-    QString house_number;
+    QString houseNumber;
     int plz;
     QString location;
 };

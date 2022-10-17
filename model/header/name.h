@@ -4,11 +4,11 @@
 #include <QString>
 
 struct Name {
-    QString first_name;
-    QString last_name;
+    QString firstName;
+    QString lastName;
 
     Name() {}
-    Name(QString first_name, QString last_name) : first_name(first_name), last_name(last_name) {}
+    Name(QString firstName, QString lastName) : firstName(firstName), lastName(lastName) {}
 };
 
 #endif // NAME_H

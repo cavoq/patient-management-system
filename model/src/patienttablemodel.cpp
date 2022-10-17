@@ -64,21 +64,21 @@ QVariant PatientTableModel::data(const QModelIndex &index, int role) const
             case 0:
                 return patient.titel;
             case 1:
-                return patient.name.first_name;
+                return patient.name.firstName;
             case 2:
-                return patient.name.last_name;
+                return patient.name.lastName;
             case 3:
-                return patient.birth_date.toString("dd.MM.yyyy");
+                return patient.birthDate.toString("dd.MM.yyyy");
             case 4:
                 return patient.address.street;
             case 5:
-                return patient.address.house_number;
+                return patient.address.houseNumber;
             case 6:
                 return patient.address.plz;
             case 7:
                 return patient.address.location;
             case 8:
-                return patient.phone_number;
+                return patient.phoneNumber;
             case 9:
                 return patient.gender;
             default:
@@ -123,19 +123,19 @@ bool PatientTableModel::setData(const QModelIndex &index, const QVariant &value,
                 patient.titel = value.toString();
                 break;
             case 1:
-                patient.name.first_name = value.toString();
+                patient.name.firstName = value.toString();
                 break;
             case 2:
-                patient.name.last_name = value.toString();
+                patient.name.lastName = value.toString();
                 break;
             case 3:
-                patient.birth_date = value.toDate();
+                patient.birthDate = value.toDate();
                 break;
             case 4:
                 patient.address.street = value.toString();
                 break;
             case 5:
-                patient.address.house_number = value.toString();
+                patient.address.houseNumber = value.toString();
                 break;
             case 6:
                 patient.address.plz = value.toInt();
@@ -144,7 +144,7 @@ bool PatientTableModel::setData(const QModelIndex &index, const QVariant &value,
                 patient.address.location = value.toString();
                 break;
             case 8:
-                patient.phone_number = value.toString();
+                patient.phoneNumber = value.toString();
                 break;
             case 9:
                 patient.gender = value.toString();

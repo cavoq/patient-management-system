@@ -42,8 +42,8 @@ bool PatientJsonManager::writePatient(QJsonObject &jsonPatient, const Patient &p
     jsonPatient.insert("titel", patient.titel);
     jsonPatient.insert("name", jsonName);
     jsonPatient.insert("address", jsonAddress);
-    jsonPatient.insert("phone number", patient.phone_number);
-    jsonPatient.insert("birth date", patient.birth_date.toString());
+    jsonPatient.insert("phone number", patient.phoneNumber);
+    jsonPatient.insert("birth date", patient.birthDate.toString("dd.MM.yyyy"));
     jsonPatient.insert("gender", patient.gender);
     return true;
 }
@@ -51,7 +51,7 @@ bool PatientJsonManager::writePatient(QJsonObject &jsonPatient, const Patient &p
 bool PatientJsonManager::writeAddress(QJsonObject &jsonAddress, const Address &address)
 {
     jsonAddress.insert("street", address.street);
-    jsonAddress.insert("house number", address.house_number);
+    jsonAddress.insert("house number", address.houseNumber);
     jsonAddress.insert("plz", address.plz);
     jsonAddress.insert("location", address.location);
     return true;
@@ -59,8 +59,8 @@ bool PatientJsonManager::writeAddress(QJsonObject &jsonAddress, const Address &a
 
 bool PatientJsonManager::writeName(QJsonObject &jsonName, const Name &name)
 {
-    jsonName.insert("first name", name.first_name);
-    jsonName.insert("last name", name.last_name);
+    jsonName.insert("first name", name.firstName);
+    jsonName.insert("last name", name.lastName);
     return true;
 }
 
@@ -105,10 +105,10 @@ Patient PatientJsonManager::readPatient(QJsonObject &jsonPatient)
         address = this->readAddress(jsonAddress);
     }
     QJsonValue nameVal = jsonPatient.value("name");
-        if (nameVal.isObject()) {
-            QJsonObject jsonName = nameVal.toObject();
-            name = this->readName(jsonName);
-        }
+    if (nameVal.isObject()) {
+        QJsonObject jsonName = nameVal.toObject();
+        name = this->readName(jsonName);
+    }
     Patient patient = Patient(address, titel, name, birthDate, phoneNumber, gender);
     return patient;
 }

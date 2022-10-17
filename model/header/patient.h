@@ -9,12 +9,12 @@ class Patient
 {
 public:
     Patient();
-    Patient(Address& adress, QString titel, Name& name, QDate birth_date, QString phone_number, QString gender);
+    Patient(Address& adress, QString titel, Name& name, QDate birthDate, QString phoneNumber, QString gender);
     Address address;
     QString titel;
     Name name;
-    QDate birth_date;
-    QString phone_number;
+    QDate birthDate;
+    QString phoneNumber;
     QString gender;
 };
 

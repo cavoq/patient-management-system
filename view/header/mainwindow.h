@@ -33,5 +33,6 @@ private:
     Ui::MainWindow* ui;
     void showWarning(const QString &title, const QString &text);
     bool checkSelection();
+    QString getFileFromDialog();
 };
 #endif // MAINWINDOW_H
