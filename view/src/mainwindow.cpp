@@ -7,6 +7,7 @@
 #include "view/header/deletedialog.h"
 #include "view/header/showpatientwidget.h"
 #include <QMessageBox>
+#include <iostream>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -15,7 +16,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     this->patientManager->load_from_json("patients.json");
     this->patientTableModel = new PatientTableModel(this->patientManager->getPatients(), this);
-    ui->tableView->setModel(this->patientTableModel);
+    this->sortModel->setSourceModel(patientTableModel);
+    ui->tableView->setModel(this->sortModel);
     for (int i = 4; i < 10; ++i) {
         ui->tableView->setColumnHidden(i, true);
     }
@@ -35,6 +37,7 @@ void MainWindow::connectSignals()
     connect(ui->showPatientsButton, SIGNAL(clicked()), this, SLOT(openShowPatientWidget()));
     connect(ui->cancelSelectionButton, SIGNAL(clicked()), this, SLOT(cancelSelection()));
     connect(ui->deletePatientsButton, SIGNAL(clicked()), this, SLOT(openDeletePatientDialog()));
+    connect(ui->exportPatientsButton, SIGNAL(clicked()), this, SLOT(exportPatients()));
 }
 
 void MainWindow::openAddPatientWidget()
@@ -46,7 +49,7 @@ void MainWindow::openAddPatientWidget()
 void MainWindow::openChangePatientWidget()
 {
     if (!checkSelection()) {
-        showWarning("Warnung", "Es wurde kein Patient zum bearbeiten ausgewählt");
+        showWarning("Warnung", "Es wurde kein oder mehr als ein Patient zum bearbeiten ausgewählt");
         return;
     }
     QModelIndexList* selectionIndexes = new QModelIndexList(ui->tableView->selectionModel()->selection().indexes());
@@ -55,8 +58,8 @@ void MainWindow::openChangePatientWidget()
 }
 
 bool MainWindow::checkSelection() {
-    const QModelIndex currentIndex = ui->tableView->selectionModel()->currentIndex();
-    if (!currentIndex.isValid() || !ui->tableView->selectionModel()->isSelected(currentIndex)) {
+    const QModelIndexList selection = ui->tableView->selectionModel()->selectedRows();
+    if (selection.empty() || selection.count() > 1) {
         return false;
     }
     return true;
@@ -72,7 +75,7 @@ void MainWindow::showWarning(const QString &title, const QString &message) {
 void MainWindow::openShowPatientWidget()
 {
     if (!checkSelection()) {
-        showWarning("Warnung", "Es wurde kein Patient zum ansehen ausgewählt");
+        showWarning("Warnung", "Es wurde kein oder mehr als ein Patient zum ansehen ausgewählt");
         return;
     }
     QModelIndexList* selectionIndexes = new QModelIndexList(ui->tableView->selectionModel()->selection().indexes());
@@ -83,7 +86,7 @@ void MainWindow::openShowPatientWidget()
 void MainWindow::openDeletePatientDialog()
 {
     if (!checkSelection()) {
-        showWarning("Warnung", "Es wurde kein Patient zum löschen ausgewählt");
+        showWarning("Warnung", "Es wurde kein oder mehr als ein Patient zum löschen ausgewählt");
         return;
     }
     QModelIndexList* selectionIndexes = new QModelIndexList(ui->tableView->selectionModel()->selection().indexes());
@@ -97,4 +100,11 @@ void MainWindow::cancelSelection()
         return;
     }
     ui->tableView->selectionModel()->clearSelection();
+}
+
+void MainWindow::exportPatients()
+{
+    QModelIndexList selection = ui->tableView->selectionModel()->selectedRows();
+    std::sort(selection.begin(), selection.end());
+    QList<Patient> selectedPatients = patientTableModel->getPatients(selection);
 }

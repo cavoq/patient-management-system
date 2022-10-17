@@ -10,3 +10,4 @@ AddPatientWidget::~AddPatientWidget()
 {
     delete ui;
 }
+

@@ -179,3 +179,13 @@ const QList<Patient>& PatientTableModel::getPatients() const
 {
     return this->patients;
 }
+
+const QList<Patient> PatientTableModel::getPatients(QModelIndexList &selection) const
+{
+    QList<Patient> selectedPatients = QList<Patient>();
+    for (QModelIndex select: selection) {
+        int rowPosition = select.row();
+        selectedPatients.append(this->patients.at(rowPosition));
+    }
+    return selectedPatients;
+}

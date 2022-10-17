@@ -39,6 +39,7 @@ public:
     bool insertRows(int position, int rows, const QModelIndex &index = QModelIndex()) override;
     bool setRowData(const QModelIndexList &indexes, const QVariantList &values, int role = Qt::EditRole);
     const QList<Patient>& getPatients() const;
+    const QList<Patient> getPatients(QModelIndexList &selection) const;
 
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
 

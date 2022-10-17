@@ -19,6 +19,7 @@ public slots:
     void openShowPatientWidget();
     void openDeletePatientDialog();
     void cancelSelection();
+    void exportPatients();
 
 public:
     MainWindow(QWidget *parent = nullptr);
@@ -27,6 +28,7 @@ public:
 
 private:
     PatientManager *patientManager = new PatientManager();
+    QSortFilterProxyModel *sortModel = new QSortFilterProxyModel;
     PatientTableModel *patientTableModel;
     Ui::MainWindow* ui;
     void showWarning(const QString &title, const QString &text);
