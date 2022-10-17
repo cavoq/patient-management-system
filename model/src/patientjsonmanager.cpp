@@ -5,12 +5,12 @@
 
 PatientJsonManager::PatientJsonManager() {}
 
-bool PatientJsonManager::writeToJson(QString jsonFile, QList<Patient>& patients)
+bool PatientJsonManager::writeToJson(QString jsonFile, const QList<Patient>& patients)
 {
     QJsonObject jsonPatients;
     QJsonDocument document;
     int patientIndex = 0;
-    for (Patient& patient: patients) {
+    for (const Patient& patient: patients) {
         std::string patientIndexAsString = std::to_string(patientIndex);
         QJsonObject jsonPatient;
         if (!writePatient(jsonPatient, patient)) {
@@ -32,24 +32,7 @@ bool PatientJsonManager::writeToJson(QString jsonFile, QList<Patient>& patients)
      }
 }
 
-
-bool writeAddress(QJsonObject &jsonAddress, Address &address)
-{
-    jsonAddress.insert("street", address.street);
-    jsonAddress.insert("house number", address.house_number);
-    jsonAddress.insert("plz", address.plz);
-    jsonAddress.insert("location", address.location);
-    return true;
-}
-
-bool writeName(QJsonObject &jsonName, Name &name)
-{
-    jsonName.insert("first name", name.first_name);
-    jsonName.insert("last name", name.last_name);
-    return true;
-}
-
-bool writePatient(QJsonObject &jsonPatient, Patient &patient)
+bool PatientJsonManager::writePatient(QJsonObject &jsonPatient, const Patient &patient)
 {
     QJsonObject jsonAddress;
     QJsonObject jsonName;
@@ -62,6 +45,22 @@ bool writePatient(QJsonObject &jsonPatient, Patient &patient)
     jsonPatient.insert("phone number", patient.phone_number);
     jsonPatient.insert("birth date", patient.birth_date.toString());
     jsonPatient.insert("gender", patient.gender);
+    return true;
+}
+
+bool PatientJsonManager::writeAddress(QJsonObject &jsonAddress, const Address &address)
+{
+    jsonAddress.insert("street", address.street);
+    jsonAddress.insert("house number", address.house_number);
+    jsonAddress.insert("plz", address.plz);
+    jsonAddress.insert("location", address.location);
+    return true;
+}
+
+bool PatientJsonManager::writeName(QJsonObject &jsonName, const Name &name)
+{
+    jsonName.insert("first name", name.first_name);
+    jsonName.insert("last name", name.last_name);
     return true;
 }
 

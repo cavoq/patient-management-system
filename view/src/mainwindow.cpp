@@ -14,7 +14,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    QList<Patient> patients = this->patientJsonManager->loadFromJson("patients.json");
+    QList<Patient> patients = this->patientJsonManager->readFromJson("patients.json");
     this->patientTableModel = new PatientTableModel(patients, this);
     this->sortModel->setSourceModel(patientTableModel);
     ui->tableView->setModel(this->sortModel);
@@ -26,6 +26,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
+    patientJsonManager->writeToJson("patients.json", patientTableModel->getPatients());
     delete patientTableModel;
     delete ui;
 }

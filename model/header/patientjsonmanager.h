@@ -16,13 +16,13 @@ private:
     Address readAddress(QJsonObject &jsonAddress);
     Name readName(QJsonObject &jsonName);
     Patient readPatient(QJsonObject &jsonPatient);
-    bool writeAddress(QJsonObject &jsonObject, Address &address);
-    bool writeName(QJsonObject &jsonObject, Name &name);
-    bool writePatient(QJsonObject &jsonObject, Patient &patient);
+    bool writeAddress(QJsonObject &jsonObject, const Address &address);
+    bool writeName(QJsonObject &jsonObject, const Name &name);
+    bool writePatient(QJsonObject &jsonObject, const Patient &patient);
 
 public:
     PatientJsonManager();
-    bool writeToJson(QString jsonFile, QList<Patient> &patients);
+    bool writeToJson(QString jsonFile, const QList<Patient> &patients);
     QList<Patient> readFromJson(QString jsonFile);
 };
 
