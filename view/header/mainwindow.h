@@ -2,8 +2,10 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "model/header/patientjsonmanager.h"
 #include "model/header/patienttablemodel.h"
+#include "patientjsonreader.h"
+#include "patientjsonwriter.h"
+#include "qsortfilterproxymodel.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -27,7 +29,8 @@ public:
     ~MainWindow();
 
 private:
-    PatientJsonManager *patientJsonManager = new PatientJsonManager();
+    PatientJsonReader *patientJsonManager = new PatientJsonReader();
+    PatientJsonWriter *patientJsonWriter = new PatientJsonWriter();
     QSortFilterProxyModel *sortModel = new QSortFilterProxyModel;
     PatientTableModel *patientTableModel;
     Ui::MainWindow* ui;

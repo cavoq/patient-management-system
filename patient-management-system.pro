@@ -12,8 +12,9 @@ SOURCES += \
     main.cpp \
     model/src/address.cpp \
     model/src/patient.cpp \
-    model/src/patientjsonmanager.cpp \
     model/src/patienttablemodel.cpp \
+    patientjsonreader.cpp \
+    patientjsonwriter.cpp \
     view/src/addpatientwidget.cpp \
     view/src/changepatientwidget.cpp \
     view/src/deletedialog.cpp \
@@ -25,8 +26,9 @@ HEADERS += \
     model/header/address.h \
     model/header/name.h \
     model/header/patient.h \
-    model/header/patientjsonmanager.h \
     model/header/patienttablemodel.h \
+    patientjsonreader.h \
+    patientjsonwriter.h \
     view/header/addpatientwidget.h \
     view/header/changepatientwidget.h \
     view/header/deletedialog.h \

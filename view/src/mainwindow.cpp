@@ -1,5 +1,4 @@
 #include "view/header/mainwindow.h"
-#include "model/header/patientjsonmanager.h"
 #include "model/header/patienttablemodel.h"
 #include "ui_mainwindow.h"
 #include "view/header/addpatientwidget.h"
@@ -28,7 +27,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
-    patientJsonManager->writeToJson("patients.json", patientTableModel->getPatients());
+    patientJsonWriter->writeToJson("patients.json", patientTableModel->getPatients());
     delete patientTableModel;
     delete ui;
 }
@@ -110,7 +109,7 @@ void MainWindow::exportPatients()
     QModelIndexList selection = ui->tableView->selectionModel()->selectedRows();
     std::sort(selection.begin(), selection.end());
     QList<Patient> selectedPatients = patientTableModel->getPatients(selection);
-    patientJsonManager->writeToJson(getFileFromDialog(), selectedPatients);
+    patientJsonWriter->writeToJson(getFileFromDialog(), selectedPatients);
 }
 
 QString MainWindow::getFileFromDialog()
