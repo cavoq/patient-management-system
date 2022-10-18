@@ -16,6 +16,9 @@ class ShowPatientWidget : public PatientFormWidget
 public:
     explicit ShowPatientWidget(QWidget *parent = nullptr, PatientTableModel *patientTableModel = nullptr, const QModelIndexList &selectionIndexes = QModelIndexList());
     ~ShowPatientWidget();
+
+private:
+    void setEditable(bool editable);
 };
 
 #endif // SHOWPATIENTWIDGET_H

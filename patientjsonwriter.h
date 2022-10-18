@@ -11,14 +11,14 @@
 
 class PatientJsonWriter
 {
+public:
+    PatientJsonWriter();
+    bool writeToJson(QString jsonFile, const QList<Patient> &patients);
+
 private:
     bool writeAddress(QJsonObject &jsonObject, const Address &address);
     bool writeName(QJsonObject &jsonObject, const Name &name);
     bool writePatient(QJsonObject &jsonObject, const Patient &patient);
-
-public:
-    PatientJsonWriter();
-    bool writeToJson(QString jsonFile, const QList<Patient> &patients);
 };
 
 #endif // PATIENTJSONWRITER_H

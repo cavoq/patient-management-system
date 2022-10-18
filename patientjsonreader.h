@@ -11,14 +11,14 @@
 
 class PatientJsonReader
 {
+public:
+    PatientJsonReader();
+    QList<Patient> readFromJson(QString jsonFile);
+
 private:
     Address readAddress(QJsonObject &jsonAddress);
     Name readName(QJsonObject &jsonName);
     Patient readPatient(QJsonObject &jsonPatient);
-
-public:
-    PatientJsonReader();
-    QList<Patient> readFromJson(QString jsonFile);
 };
 
 #endif // PATIENTJSONREADER_H
