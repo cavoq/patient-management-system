@@ -41,6 +41,13 @@ FORMS += \
     view/ui/mainwindow.ui \
     view/ui/patientformwidget.ui
 
+# Copy patients.json
+copydata.commands = $(COPY_DIR) $$PWD/patients.json $$OUT_PWD
+first.depends = $(first) copydata
+export(first.depends)
+export(copydata.commands)
+QMAKE_EXTRA_TARGETS += first copydata
+
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin

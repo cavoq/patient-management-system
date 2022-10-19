@@ -1,12 +1,12 @@
 {
     "0": {
         "address": {
-            "house number": 14,
+            "house number": "14",
             "location": "Stuttgart",
-            "plz": 70173,
+            "plz": "",
             "street": "Hauptstrasse"
         },
-        "birth date": "14.12.2000",
+        "birth date": "15.12.1999",
         "gender": "Mann",
         "name": {
             "first name": "Leo",
@@ -17,34 +17,162 @@
     },
     "1": {
         "address": {
-            "house number": 15,
+            "house number": "15",
             "location": "Koblenz",
-            "plz": 56220,
+            "plz": "",
             "street": "Rheinstrasse"
         },
-        "birth date": "14.12.1998",
+        "birth date": "12.07.2001",
         "gender": "Frau",
         "name": {
             "first name": "Marie",
-            "last name": "Married"
+            "last name": "Emmert"
         },
         "phone number": "198021801",
         "titel": "Doktor med"
     },
+    "10": {
+        "address": {
+            "house number": "5",
+            "location": "Tetrisstadt",
+            "plz": "42423",
+            "street": "Tetrisstrasse"
+        },
+        "birth date": "01.01.2000",
+        "gender": "Mann",
+        "name": {
+            "first name": "Leo",
+            "last name": "Leonson"
+        },
+        "phone number": "348202",
+        "titel": ""
+    },
     "2": {
         "address": {
-            "house number": 13,
-            "location": "Mainz",
-            "plz": 56223,
+            "house number": "3",
+            "location": "Elfenstadt",
+            "plz": "34223",
+            "street": "Elfendorfallee"
+        },
+        "birth date": "01.01.1990",
+        "gender": "Mann",
+        "name": {
+            "first name": "Tomas",
+            "last name": "Carlson"
+        },
+        "phone number": "342424",
+        "titel": "Doktor"
+    },
+    "3": {
+        "address": {
+            "house number": "2",
+            "location": "Kammersheim",
+            "plz": "52423",
             "street": "Feldstrasse"
         },
-        "birth date": "14.12.1997",
+        "birth date": "01.01.1980",
+        "gender": "Frau",
+        "name": {
+            "first name": "Vanessa",
+            "last name": "Carlson"
+        },
+        "phone number": "42342323",
+        "titel": ""
+    },
+    "4": {
+        "address": {
+            "house number": "4",
+            "location": "Mainz",
+            "plz": "43532",
+            "street": "Feinstrasse"
+        },
+        "birth date": "01.01.1977",
+        "gender": "Mann",
+        "name": {
+            "first name": "Mario",
+            "last name": "Hummer"
+        },
+        "phone number": "523522",
+        "titel": ""
+    },
+    "5": {
+        "address": {
+            "house number": "13",
+            "location": "Mainz",
+            "plz": "",
+            "street": "Feldstrasse"
+        },
+        "birth date": "01.02.2000",
         "gender": "Divers",
         "name": {
             "first name": "John",
             "last name": "Carmack"
         },
         "phone number": "198021801",
+        "titel": "Legende"
+    },
+    "6": {
+        "address": {
+            "house number": "3a",
+            "location": "Mainz",
+            "plz": "56363",
+            "street": "Haupstrasse"
+        },
+        "birth date": "01.01.2000",
+        "gender": "Mann",
+        "name": {
+            "first name": "Max",
+            "last name": "Mustermann"
+        },
+        "phone number": "932032",
+        "titel": ""
+    },
+    "7": {
+        "address": {
+            "house number": "4",
+            "location": "Hummersheim",
+            "plz": "84348",
+            "street": "Leopoldstrasse"
+        },
+        "birth date": "01.01.1996",
+        "gender": "Mann",
+        "name": {
+            "first name": "George",
+            "last name": "Hotz"
+        },
+        "phone number": "323283279",
+        "titel": ""
+    },
+    "8": {
+        "address": {
+            "house number": "3",
+            "location": "New York City",
+            "plz": "42432233",
+            "street": "Allee"
+        },
+        "birth date": "06.07.1921",
+        "gender": "Frau",
+        "name": {
+            "first name": "Nancy",
+            "last name": "Reagon"
+        },
+        "phone number": "",
+        "titel": ""
+    },
+    "9": {
+        "address": {
+            "house number": "3",
+            "location": "Musterstadt",
+            "plz": "3422",
+            "street": "Musterstrasse"
+        },
+        "birth date": "01.01.1988",
+        "gender": "Mann",
+        "name": {
+            "first name": "Manfred",
+            "last name": "Mustermann"
+        },
+        "phone number": "923023",
         "titel": ""
     }
 }
