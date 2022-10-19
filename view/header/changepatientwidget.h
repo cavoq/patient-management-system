@@ -16,7 +16,6 @@ class ChangePatientWidget : public PatientFormWidget
 public slots:
     void discard();
     void accept();
-    bool verify();
 
 public:
     explicit ChangePatientWidget(QWidget *parent = nullptr, PatientTableModel *patientTableModel = nullptr, const QModelIndexList &selectionIndexes = QModelIndexList());

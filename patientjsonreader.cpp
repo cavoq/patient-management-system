@@ -1,3 +1,7 @@
+/*
+ *  Implementation of the PatientJsonReader, used to read the patients from a json file.
+ */
+
 #include "patientjsonreader.h"
 #include <QFile>
 #include <QJsonParseError>
@@ -59,7 +63,7 @@ Address PatientJsonReader::readAddress(QJsonObject &jsonAddress)
 {
     QString street = jsonAddress.value("street").toString();
     QString houseNumber = jsonAddress.value("house number").toString();
-    int plz = jsonAddress.value("plz").toInt();
+    QString plz = jsonAddress.value("plz").toString();
     QString location = jsonAddress.value("location").toString();
     return Address(street, houseNumber, plz, location);
 }

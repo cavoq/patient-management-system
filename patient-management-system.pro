@@ -13,9 +13,9 @@ SOURCES += \
     model/src/address.cpp \
     model/src/patient.cpp \
     model/src/patienttablemodel.cpp \
+    multicolumnfilterproxymodel.cpp \
     patientjsonreader.cpp \
     patientjsonwriter.cpp \
-    view/src/addpatientwidget.cpp \
     view/src/changepatientwidget.cpp \
     view/src/deletedialog.cpp \
     view/src/mainwindow.cpp \
@@ -27,9 +27,9 @@ HEADERS += \
     model/header/name.h \
     model/header/patient.h \
     model/header/patienttablemodel.h \
+    multicolumnfilterproxymodel.h \
     patientjsonreader.h \
     patientjsonwriter.h \
-    view/header/addpatientwidget.h \
     view/header/changepatientwidget.h \
     view/header/deletedialog.h \
     view/header/mainwindow.h \

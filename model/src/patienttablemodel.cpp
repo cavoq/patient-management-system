@@ -1,10 +1,6 @@
 #include "model/header/patienttablemodel.h"
-#include <iostream>
 
-PatientTableModel::PatientTableModel(const QList<Patient>& patients, QObject *parent)
-    : QAbstractTableModel(parent), patients(patients)
-{
-}
+PatientTableModel::PatientTableModel(const QList<Patient>& patients, QObject *parent) : QAbstractTableModel(parent), patients(patients) {}
 
 QVariant PatientTableModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
@@ -36,6 +32,39 @@ int PatientTableModel::rowCount(const QModelIndex &parent) const
 int PatientTableModel::columnCount(const QModelIndex &parent) const
 {
     return parent.isValid() ? 0 : this->column_count;
+}
+
+QModelIndexList PatientTableModel::indexes(const int row)
+{
+    QModelIndexList indexes;
+    for (int column = TITEL; column <= GESCHLECHT; ++column) {
+        indexes.append(index(row, column));
+    }
+    return indexes;
+}
+
+bool PatientTableModel::removeRows(int position, int rows, const QModelIndex &index)
+{
+    Q_UNUSED(index);
+    beginRemoveRows(QModelIndex(), position, position + rows - 1);
+
+    for (int row = 0; row < rows; ++row)
+        patients.removeAt(position);
+
+    endRemoveRows();
+    return true;
+}
+
+bool PatientTableModel::insertRows(int position, int rows, const QModelIndex &index)
+{
+    Q_UNUSED(index);
+    beginInsertRows(QModelIndex(), position, position + rows - 1);
+
+    for (int row = 0; row < rows; ++row)
+        patients.insert(position, Patient());
+
+    endInsertRows();
+    return true;
 }
 
 QVariant PatientTableModel::data(const QModelIndex &index, int role) const
@@ -76,30 +105,6 @@ QVariant PatientTableModel::data(const QModelIndex &index, int role) const
     return QVariant();
 }
 
-bool PatientTableModel::insertRows(int position, int rows, const QModelIndex &index)
-{
-    Q_UNUSED(index);
-    beginInsertRows(QModelIndex(), position, position + rows - 1);
-
-    for (int row = 0; row < rows; ++row)
-        this->patients.insert(position, Patient());
-
-    endInsertRows();
-    return true;
-}
-
-bool PatientTableModel::removeRows(int position, int rows, const QModelIndex &index)
-{
-    Q_UNUSED(index);
-    beginRemoveRows(QModelIndex(), position, position + rows - 1);
-
-    for (int row = 0; row < rows; ++row)
-        this->patients.removeAt(position);
-
-    endRemoveRows();
-    return true;
-}
-
 bool PatientTableModel::setData(const QModelIndex &index, const QVariant &value, int role)
 {
     if (index.isValid() && role == Qt::EditRole) {
@@ -126,7 +131,7 @@ bool PatientTableModel::setData(const QModelIndex &index, const QVariant &value,
                 patient.address.houseNumber = value.toString();
                 break;
             case 6:
-                patient.address.plz = value.toInt();
+                patient.address.plz = value.toString();
                 break;
             case 7:
                 patient.address.location = value.toString();

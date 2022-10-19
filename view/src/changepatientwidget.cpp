@@ -18,11 +18,6 @@ ChangePatientWidget::~ChangePatientWidget()
     delete ui;
 }
 
-bool ChangePatientWidget::verify()
-{
-   return false;
-}
-
 void ChangePatientWidget::accept()
 {
    QVariantList formData = getFormData();

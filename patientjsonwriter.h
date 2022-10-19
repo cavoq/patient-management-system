@@ -1,4 +1,6 @@
-/* Class that is responsible for writing the patients to a json file */
+/*
+ *  Declaration of the PatientJsonWriter, used to read patients from a json file.
+ */
 
 #ifndef PATIENTJSONWRITER_H
 #define PATIENTJSONWRITER_H
@@ -13,6 +15,14 @@ class PatientJsonWriter
 {
 public:
     PatientJsonWriter();
+
+    /*
+     * Write a list if patients into a json file.
+     *
+     * @param jsonFile file to write to
+     * @param patients list of patients to be written
+     * @return returns true if writting ws successful
+     */
     bool writeToJson(QString jsonFile, const QList<Patient> &patients);
 
 private:

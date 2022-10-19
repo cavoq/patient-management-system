@@ -3,9 +3,9 @@
 
 #include <QMainWindow>
 #include "model/header/patienttablemodel.h"
+#include "multicolumnfilterproxymodel.h"
 #include "patientjsonreader.h"
 #include "patientjsonwriter.h"
-#include "qsortfilterproxymodel.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -22,7 +22,6 @@ public slots:
     void openDeletePatientDialog();
     void cancelSelection();
     void exportPatients();
-    void search(const QString &searchString);
 
 public:
     MainWindow(QWidget *parent = nullptr);
@@ -31,14 +30,13 @@ public:
 private:
     PatientJsonReader *patientJsonReader = new PatientJsonReader();
     PatientJsonWriter *patientJsonWriter = new PatientJsonWriter();
-    QSortFilterProxyModel *sortProxyModel = new QSortFilterProxyModel;
+    MultiColumnFilterProxyModel *filterProxyModel = new MultiColumnFilterProxyModel();
     PatientTableModel *patientTableModel;
     Ui::MainWindow *ui;
     void loadPatients();
     void connectSignals();
     void hideColumns();
-    QStringList getSearchTexts(const QString &searchString);
-    void showWarning(const QString &title, const QString &text);
+    void showMessage(const QString &title, const QString &text);
     bool checkSelection();
     QString getFileFromDialog();
 };

@@ -7,10 +7,10 @@ class Address
 {
 public:
     Address();
-    Address(QString street, QString houseNumber, int plz, QString location);
+    Address(QString street, QString houseNumber, QString plz, QString location);
     QString street;
     QString houseNumber;
-    int plz;
+    QString plz;
     QString location;
 };
 

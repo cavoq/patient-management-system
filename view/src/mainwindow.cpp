@@ -2,12 +2,12 @@
 #include "model/header/patienttablemodel.h"
 #include "qjsondocument.h"
 #include "ui_mainwindow.h"
-#include "view/header/addpatientwidget.h"
 #include "view/header/changepatientwidget.h"
 #include "view/header/deletedialog.h"
 #include "view/header/showpatientwidget.h"
 #include <QMessageBox>
 #include <QFileDialog>
+#include <QObject>
 #include <iostream>
 
 MainWindow::MainWindow(QWidget *parent)
@@ -16,8 +16,8 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     loadPatients();
-    sortProxyModel->setSourceModel(patientTableModel);
-    ui->tableView->setModel(sortProxyModel);
+    filterProxyModel->setSourceModel(patientTableModel);
+    ui->tableView->setModel(filterProxyModel);
     hideColumns();
     connectSignals();
 }
@@ -35,14 +35,14 @@ void MainWindow::loadPatients()
         QList<Patient> patients = patientJsonReader->readFromJson("patients.json");
         patientTableModel = new PatientTableModel(patients, this);
     } catch (QJsonParseError e) {
-        showWarning("Error", "Das lesen der Patientendaten schlug fehl");
+        showMessage("Error", "Das lesen der Patientendaten schlug fehl");
         return;
     }
 }
 
 void MainWindow::hideColumns()
 {
-    for (int column = patientTableModel->STRASSE; column < patientTableModel->GESCHLECHT; ++column) {
+    for (int column = patientTableModel->STRASSE; column <= patientTableModel->GESCHLECHT; ++column) {
             ui->tableView->setColumnHidden(column, true);
     }
 }
@@ -55,19 +55,24 @@ void MainWindow::connectSignals()
     connect(ui->cancelSelectionButton, SIGNAL(clicked()), this, SLOT(cancelSelection()));
     connect(ui->deletePatientsButton, SIGNAL(clicked()), this, SLOT(openDeletePatientDialog()));
     connect(ui->exportPatientsButton, SIGNAL(clicked()), this, SLOT(exportPatients()));
-    connect(ui->searchLineEdit, SIGNAL(textEdited(QString)), this, SLOT(search(QString)));
+    QObject::connect(ui->firstNameLineEdit, &QLineEdit::textChanged, filterProxyModel, &MultiColumnFilterProxyModel::setFirstNameFilter);
+    QObject::connect(ui->nameLineEdit, &QLineEdit::textChanged, filterProxyModel, &MultiColumnFilterProxyModel::setNameFilter);
+    QObject::connect(ui->birthDateLineEdit, &QLineEdit::textChanged, filterProxyModel, &MultiColumnFilterProxyModel::setBirthDateFilter);
 }
 
 void MainWindow::openAddPatientWidget()
 {
-    AddPatientWidget* addPatientWidget = new AddPatientWidget();
+    patientTableModel->insertRow(patientTableModel->rowCount());
+    QModelIndexList *newIndexes = new QModelIndexList(patientTableModel->indexes(patientTableModel->rowCount() - 1));
+    ChangePatientWidget* addPatientWidget = new ChangePatientWidget(nullptr, patientTableModel, *newIndexes);
+    addPatientWidget->setWindowTitle("Patient hinzufügen");
     addPatientWidget->show();
 }
 
 void MainWindow::openChangePatientWidget()
 {
     if (!checkSelection()) {
-        showWarning("Warnung", "Es wurde kein oder mehr als ein Patient zum bearbeiten ausgewählt");
+        showMessage("Warnung", "Es wurde kein oder mehr als ein Patient zum bearbeiten ausgewählt");
         return;
     }
     QModelIndexList* selectionIndexes = new QModelIndexList(ui->tableView->selectionModel()->selection().indexes());
@@ -83,7 +88,7 @@ bool MainWindow::checkSelection() {
     return true;
 }
 
-void MainWindow::showWarning(const QString &title, const QString &message) {
+void MainWindow::showMessage(const QString &title, const QString &message) {
     QMessageBox warning;
     warning.setWindowTitle(title);
     warning.setText(message);
@@ -93,7 +98,7 @@ void MainWindow::showWarning(const QString &title, const QString &message) {
 void MainWindow::openShowPatientWidget()
 {
     if (!checkSelection()) {
-        showWarning("Warnung", "Es wurde kein oder mehr als ein Patient zum ansehen ausgewählt");
+        showMessage("Warnung", "Es wurde kein oder mehr als ein Patient zum ansehen ausgewählt");
         return;
     }
     QModelIndexList* selectionIndexes = new QModelIndexList(ui->tableView->selectionModel()->selection().indexes());
@@ -104,7 +109,7 @@ void MainWindow::openShowPatientWidget()
 void MainWindow::openDeletePatientDialog()
 {
     if (!checkSelection()) {
-        showWarning("Warnung", "Es wurde kein oder mehr als ein Patient zum löschen ausgewählt");
+        showMessage("Warnung", "Es wurde kein oder mehr als ein Patient zum löschen ausgewählt");
         return;
     }
     QModelIndexList* selectionIndexes = new QModelIndexList(ui->tableView->selectionModel()->selection().indexes());
@@ -114,6 +119,9 @@ void MainWindow::openDeletePatientDialog()
 
 void MainWindow::cancelSelection()
 {
+    ui->firstNameLineEdit->clear();
+    ui->nameLineEdit->clear();
+    ui->birthDateLineEdit->clear();
     if (!ui->tableView->selectionModel()->hasSelection()) {
         return;
     }
@@ -126,23 +134,6 @@ void MainWindow::exportPatients()
     std::sort(selection.begin(), selection.end());
     QList<Patient> selectedPatients = patientTableModel->getPatients(selection);
     patientJsonWriter->writeToJson(getFileFromDialog(), selectedPatients);
-}
-
-void MainWindow::search(const QString &searchString)
-{
-    QStringList searchTexts = getSearchTexts(searchString);
-    int column = patientTableModel->VORNAME;
-    for (QString &searchText: searchTexts) {
-        QString findName = searchText.trimmed();
-        sortProxyModel->setFilterKeyColumn(column);
-        sortProxyModel->setFilterFixedString(findName);
-        column += 1;
-    }
-}
-
-QStringList MainWindow::getSearchTexts(const QString &searchString) {
-    QStringList searchTexts = searchString.split(",");
-    return searchTexts;
 }
 
 QString MainWindow::getFileFromDialog()

@@ -1,6 +1,6 @@
 #include "model/header/address.h"
 
-Address::Address(QString street, QString houseNumber, int plz, QString location)
+Address::Address(QString street, QString houseNumber, QString plz, QString location)
 {
     this->street = street;
     this->houseNumber = houseNumber;
