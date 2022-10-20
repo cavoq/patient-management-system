@@ -13,13 +13,13 @@ SOURCES += \
     model/src/address.cpp \
     model/src/patient.cpp \
     model/src/patienttablemodel.cpp \
-    multicolumnfilterproxymodel.cpp \
-    patientjsonreader.cpp \
-    patientjsonwriter.cpp \
-    view/src/changepatientwidget.cpp \
+    src/multicolumnfilterproxymodel.cpp \
+    view/src/patientformchangedecorator.cpp \
+    view/src/patientformshowdecorator.cpp \
+    src/patientjsonreader.cpp \
+    src/patientjsonwriter.cpp \
     view/src/deletedialog.cpp \
     view/src/mainwindow.cpp \
-    view/src/showpatientwidget.cpp \
     view/src/patientformwidget.cpp
 
 HEADERS += \
@@ -27,13 +27,13 @@ HEADERS += \
     model/header/name.h \
     model/header/patient.h \
     model/header/patienttablemodel.h \
-    multicolumnfilterproxymodel.h \
-    patientjsonreader.h \
-    patientjsonwriter.h \
-    view/header/changepatientwidget.h \
+    header/multicolumnfilterproxymodel.h \
+    view/header/patientformchangedecorator.h \
+    view/header/patientformshowdecorator.h \
+    header/patientjsonreader.h \
+    header/patientjsonwriter.h \
     view/header/deletedialog.h \
     view/header/mainwindow.h \
-    view/header/showpatientwidget.h \
     view/header/patientformwidget.h
 
 FORMS += \

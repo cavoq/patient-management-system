@@ -2,13 +2,12 @@
 #include "model/header/patienttablemodel.h"
 #include "qjsondocument.h"
 #include "ui_mainwindow.h"
-#include "view/header/changepatientwidget.h"
 #include "view/header/deletedialog.h"
-#include "view/header/showpatientwidget.h"
+#include "view/header/patientformchangedecorator.h"
+#include "view/header/patientformshowdecorator.h"
 #include <QMessageBox>
 #include <QFileDialog>
 #include <QObject>
-#include <iostream>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -64,9 +63,9 @@ void MainWindow::openAddPatientWidget()
 {
     patientTableModel->insertRow(patientTableModel->rowCount());
     QModelIndexList *newIndexes = new QModelIndexList(patientTableModel->indexes(patientTableModel->rowCount() - 1));
-    ChangePatientWidget* addPatientWidget = new ChangePatientWidget(nullptr, patientTableModel, *newIndexes);
-    addPatientWidget->setWindowTitle("Patient hinzufügen");
-    addPatientWidget->show();
+    PatientFormWidget* patientFormWidget = new PatientFormWidget(nullptr, patientTableModel, *newIndexes);
+    PatientFormChangeDecorator* patientFormChangeDecorator = new PatientFormChangeDecorator(patientFormWidget, "Patientendaten hinzufügen");
+    patientFormChangeDecorator->show();
 }
 
 void MainWindow::openChangePatientWidget()
@@ -75,9 +74,8 @@ void MainWindow::openChangePatientWidget()
         showMessage("Warnung", "Es wurde kein oder mehr als ein Patient zum bearbeiten ausgewählt");
         return;
     }
-    QModelIndexList* selectionIndexes = new QModelIndexList(ui->tableView->selectionModel()->selection().indexes());
-    ChangePatientWidget* changePatientWidget = new ChangePatientWidget(nullptr, patientTableModel, *selectionIndexes);
-    changePatientWidget->show();
+    PatientFormChangeDecorator* patientFormChangeDecorator = new PatientFormChangeDecorator(getPatientFormWidget(), "Patientendaten verändern");
+    patientFormChangeDecorator->show();
 }
 
 bool MainWindow::checkSelection() {
@@ -101,9 +99,15 @@ void MainWindow::openShowPatientWidget()
         showMessage("Warnung", "Es wurde kein oder mehr als ein Patient zum ansehen ausgewählt");
         return;
     }
+    PatientFormShowDecorator* patientFormShowDecorator = new PatientFormShowDecorator(getPatientFormWidget());
+    patientFormShowDecorator->show();
+}
+
+PatientFormWidget* MainWindow::getPatientFormWidget()
+{
     QModelIndexList* selectionIndexes = new QModelIndexList(ui->tableView->selectionModel()->selection().indexes());
-    ShowPatientWidget* showPatientWidget = new ShowPatientWidget(nullptr, patientTableModel, *selectionIndexes);
-    showPatientWidget->show();
+    PatientFormWidget* patientFormWidget = new PatientFormWidget(nullptr, patientTableModel, *selectionIndexes);
+    return patientFormWidget;
 }
 
 void MainWindow::openDeletePatientDialog()

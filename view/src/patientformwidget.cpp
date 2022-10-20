@@ -1,7 +1,6 @@
 #include "view/header/patientformwidget.h"
 #include "model/header/patienttablemodel.h"
 #include "ui_patientformwidget.h"
-#include <iostream>
 #include <ostream>
 
 PatientFormWidget::PatientFormWidget(QWidget *parent, PatientTableModel *patientTableModel, const QModelIndexList &selectionIndexes) :
@@ -13,30 +12,13 @@ PatientFormWidget::PatientFormWidget(QWidget *parent, PatientTableModel *patient
     ui->setupUi(this);
     const QStringList genders {"Mann", "Frau", "Divers"};
     ui->genderComboBox->addItems(genders);
+    setFormData();
 }
 
 PatientFormWidget::~PatientFormWidget()
 {
     delete &selectionIndexes;
     delete ui;
-}
-
-QVariantList PatientFormWidget::getFormData()
-{
-    QVariantList formData;
-    const QVariant titel = QVariant(ui->titelLineEdit->text());
-    const QVariant firstName = QVariant(ui->firstNameLineEdit->text());
-    const QVariant lastName = QVariant(ui->nameLineEdit->text());
-    const QVariant birthDate = QVariant(ui->birthDateDateEdit->date());
-    const QVariant street = QVariant(ui->streetLineEdit->text());
-    const QVariant houseNumber = QVariant(ui->houseNumberLineEdit->text());
-    const QVariant plz = QVariant(ui->pLZLineEdit->text());
-    const QVariant location = QVariant(ui->placeLineEdit->text());
-    const QVariant phoneNumber = QVariant(ui->phoneNumberLineEdit->text());
-    const QVariant gender = QVariant(ui->genderComboBox->currentText());
-    formData << titel << firstName << lastName << birthDate << street
-             << houseNumber << plz << location << phoneNumber << gender;
-    return formData;
 }
 
 void PatientFormWidget::setFormData()

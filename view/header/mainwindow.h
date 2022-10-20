@@ -3,9 +3,10 @@
 
 #include <QMainWindow>
 #include "model/header/patienttablemodel.h"
-#include "multicolumnfilterproxymodel.h"
-#include "patientjsonreader.h"
-#include "patientjsonwriter.h"
+#include "header/multicolumnfilterproxymodel.h"
+#include "header/patientjsonreader.h"
+#include "header/patientjsonwriter.h"
+#include "view/header/patientformwidget.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -32,6 +33,7 @@ private:
     PatientJsonWriter *patientJsonWriter = new PatientJsonWriter();
     MultiColumnFilterProxyModel *filterProxyModel = new MultiColumnFilterProxyModel();
     PatientTableModel *patientTableModel;
+    PatientFormWidget *getPatientFormWidget();
     Ui::MainWindow *ui;
     void loadPatients();
     void connectSignals();

@@ -18,7 +18,6 @@ public:
     Ui::PatientFormWidget *ui;
     PatientTableModel *patientTableModel;
     const QModelIndexList &selectionIndexes;
-    QVariantList getFormData();
     void setFormData();
 };
 
