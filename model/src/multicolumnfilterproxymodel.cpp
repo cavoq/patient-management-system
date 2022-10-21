@@ -1,4 +1,4 @@
-#include "header/multicolumnfilterproxymodel.h"
+#include "model/header/multicolumnfilterproxymodel.h"
 
 MultiColumnFilterProxyModel::MultiColumnFilterProxyModel(QObject *parent) : QSortFilterProxyModel(parent) {}
 

@@ -8,7 +8,6 @@
 #define PATIENTTABLEMODEL_H
 
 #include <QAbstractTableModel>
-
 #include "model/header/patient.h"
 
 class PatientTableModel : public QAbstractTableModel

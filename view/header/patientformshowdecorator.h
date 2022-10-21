@@ -6,7 +6,6 @@
 #ifndef PATIENTFORMSHOWDECORATOR_H
 #define PATIENTFORMSHOWDECORATOR_H
 
-
 #include "view/header/patientformwidget.h"
 
 class PatientFormShowDecorator

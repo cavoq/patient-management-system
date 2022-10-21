@@ -8,7 +8,7 @@
 
 #include <QMainWindow>
 #include "model/header/patienttablemodel.h"
-#include "header/multicolumnfilterproxymodel.h"
+#include "model/header/multicolumnfilterproxymodel.h"
 #include "header/patientjsonreader.h"
 #include "header/patientjsonwriter.h"
 #include "view/header/patientformwidget.h"

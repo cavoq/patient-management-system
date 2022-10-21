@@ -13,7 +13,7 @@ SOURCES += \
     model/src/address.cpp \
     model/src/patient.cpp \
     model/src/patienttablemodel.cpp \
-    src/multicolumnfilterproxymodel.cpp \
+    model/src/multicolumnfilterproxymodel.cpp \
     view/src/patientformchangedecorator.cpp \
     view/src/patientformshowdecorator.cpp \
     src/patientjsonreader.cpp \
@@ -27,7 +27,7 @@ HEADERS += \
     model/header/name.h \
     model/header/patient.h \
     model/header/patienttablemodel.h \
-    header/multicolumnfilterproxymodel.h \
+    model/header/multicolumnfilterproxymodel.h \
     view/header/patientformchangedecorator.h \
     view/header/patientformshowdecorator.h \
     header/patientjsonreader.h \
