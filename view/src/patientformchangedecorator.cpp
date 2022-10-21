@@ -47,5 +47,8 @@ void PatientFormChangeDecorator::accept()
 
 void PatientFormChangeDecorator::discard()
 {
+    if (patientFormWidget->windowTitle() == "Patientendaten hinzufügen") {
+        patientFormWidget->patientTableModel->removeRow(patientFormWidget->patientTableModel->rowCount() - 1);
+    }
     patientFormWidget->close();
 }
