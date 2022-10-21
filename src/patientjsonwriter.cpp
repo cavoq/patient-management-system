@@ -2,7 +2,7 @@
  *  Implementation of the PatientJsonWriter, used to save the patients into a json file.
  */
 
-#include "patientjsonwriter.h"
+#include "header/patientjsonwriter.h"
 #include "qjsondocument.h"
 #include <QIODevice>
 #include <QFile>

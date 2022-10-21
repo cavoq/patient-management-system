@@ -2,7 +2,7 @@
  *  Implementation of the PatientJsonReader, used to read the patients from a json file.
  */
 
-#include "patientjsonreader.h"
+#include "header/patientjsonreader.h"
 #include <QFile>
 #include <QJsonParseError>
 #include <iostream>
