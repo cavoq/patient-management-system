@@ -1,5 +1,5 @@
 # patient-management-system
-Patient management system written in Qt.
+Patient management system written in Qt for an assignment.
 
 ## Preview
 
